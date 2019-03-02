@@ -49,6 +49,10 @@
             this.buttonSpeichern = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewPatientTermine = new System.Windows.Forms.DataGridView();
+            this.textBoxSuche = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermine)).BeginInit();
             this.tabPagePatient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -64,7 +69,6 @@
             this.tabControl.Controls.Add(this.tabTermine);
             this.tabControl.Controls.Add(this.tabPagePatient);
             this.tabControl.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabControl.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl.Location = new System.Drawing.Point(41, 26);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
@@ -74,6 +78,8 @@
             // 
             // tabSuchen
             // 
+            this.tabSuchen.Controls.Add(this.label4);
+            this.tabSuchen.Controls.Add(this.textBoxSuche);
             this.tabSuchen.Controls.Add(this.buttonAddPatient);
             this.tabSuchen.Controls.Add(this.dataGridView1);
             this.tabSuchen.Location = new System.Drawing.Point(4, 29);
@@ -97,6 +103,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(0, 92);
             this.dataGridView1.Name = "dataGridView1";
@@ -145,6 +152,7 @@
             // 
             // dataGridViewTermine
             // 
+            this.dataGridViewTermine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewTermine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTermine.Location = new System.Drawing.Point(3, 101);
             this.dataGridViewTermine.Name = "dataGridViewTermine";
@@ -153,7 +161,9 @@
             // 
             // tabPagePatient
             // 
-            this.tabPagePatient.BackColor = System.Drawing.Color.Linen;
+            this.tabPagePatient.BackColor = System.Drawing.Color.Transparent;
+            this.tabPagePatient.Controls.Add(this.label5);
+            this.tabPagePatient.Controls.Add(this.dataGridViewPatientTermine);
             this.tabPagePatient.Controls.Add(this.pictureBox1);
             this.tabPagePatient.Controls.Add(this.textBoxID);
             this.tabPagePatient.Controls.Add(this.labelId);
@@ -175,7 +185,8 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(743, 14);
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(366, 63);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(165, 147);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -266,6 +277,46 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name: ";
             // 
+            // dataGridViewPatientTermine
+            // 
+            this.dataGridViewPatientTermine.AllowUserToAddRows = false;
+            this.dataGridViewPatientTermine.AllowUserToDeleteRows = false;
+            this.dataGridViewPatientTermine.AllowUserToResizeColumns = false;
+            this.dataGridViewPatientTermine.AllowUserToResizeRows = false;
+            this.dataGridViewPatientTermine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewPatientTermine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPatientTermine.Location = new System.Drawing.Point(165, 216);
+            this.dataGridViewPatientTermine.Name = "dataGridViewPatientTermine";
+            this.dataGridViewPatientTermine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewPatientTermine.Size = new System.Drawing.Size(371, 147);
+            this.dataGridViewPatientTermine.TabIndex = 11;
+            // 
+            // textBoxSuche
+            // 
+            this.textBoxSuche.Location = new System.Drawing.Point(728, 60);
+            this.textBoxSuche.Name = "textBoxSuche";
+            this.textBoxSuche.Size = new System.Drawing.Size(180, 26);
+            this.textBoxSuche.TabIndex = 2;
+            this.textBoxSuche.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(655, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Suchen:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(37, 216);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Termine: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,12 +328,14 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl.ResumeLayout(false);
             this.tabSuchen.ResumeLayout(false);
+            this.tabSuchen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabTermine.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermine)).EndInit();
             this.tabPagePatient.ResumeLayout(false);
             this.tabPagePatient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,6 +363,10 @@
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dataGridViewPatientTermine;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxSuche;
+        private System.Windows.Forms.Label label5;
     }
 }
 

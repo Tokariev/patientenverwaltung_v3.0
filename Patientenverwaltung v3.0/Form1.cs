@@ -50,11 +50,14 @@ namespace Patientenverwaltung_v3._0
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBoxID.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string ID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            textBoxID.Text = ID;
             textBoxSozNr.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             textBoxName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             textBoxVorname.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
 
+            DataTable tablePatientTermine = database.Select("SELECT datum, uhrzeit_von, uhrzeit_bis   FROM termine WHERE id_patient=" + ID);
+            dataGridViewPatientTermine.DataSource = tablePatientTermine;
             tabControl.SelectedIndex = 2;
         }
 
@@ -80,6 +83,20 @@ namespace Patientenverwaltung_v3._0
                     pictureBox1.Image = new Bitmap(dlg.FileName);
                 }
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxSuche.Text != "")
+            {
+                DataTable tablePatienten = database.Select("SELECT * FROM patienten WHERE name='" + textBoxSuche.Text + "'");
+                dataGridView1.DataSource = tablePatienten;
+            }
+            else {
+                DataTable tablePatienten = database.Select("SELECT * FROM patienten");
+                dataGridView1.DataSource = tablePatienten;
+            }
+            
         }
     }
 }
