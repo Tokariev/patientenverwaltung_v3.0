@@ -13,6 +13,10 @@ namespace Patientenverwaltung_v3._0
     public partial class Form1 : Form
     {
         DBConnect database = new DBConnect();
+        DataTable tablePatienten;
+        DataTable tableTermine;
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -21,14 +25,24 @@ namespace Patientenverwaltung_v3._0
 
         private void buttonAddPatient_Click(object sender, EventArgs e)
         {
-
+            
             tabControl.SelectedIndex = 2;
+            textBoxID.Text = null;
+            textBoxSozNr.Text = null;
+            textBoxSozNr.ReadOnly = false;
+            textBoxName.Text = null;
+            textBoxName.ReadOnly = false;
+            textBoxVorname.Text = null;
+            textBoxVorname.ReadOnly = false;
+
+            this.dataGridViewPatientTermine.DataSource = null;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataTable tablePatienten = database.Select("SELECT * FROM patienten");
-            DataTable tableTermine = database.Select("SELECT * FROM termine");
+            tablePatienten = database.Select("SELECT * FROM patienten");
+            tableTermine = database.Select("SELECT * FROM termine");
             dataGridView1.DataSource = tablePatienten;
             dataGridViewTermine.DataSource = tableTermine;
         }
@@ -41,11 +55,21 @@ namespace Patientenverwaltung_v3._0
 
         private void buttonSpeichern_Click(object sender, EventArgs e)
         {
-            labelStatus.Text = database.Insert(String.Format("INSERT INTO patienten (sozialnr, name, vorname) VALUES('{0}', '{1}', '{2}')", 
-                textBoxName.Text, textBoxVorname.Text, textBoxSozNr.Text));
-            if (labelStatus.Text == "OK") {
-                labelStatus.BackColor = Color.GreenYellow;
+            //Update
+            if (textBoxID.Text != "")
+            {
+                //string query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
+                labelStatus.Text = database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}' WHERE id_patient={3}",
+                textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text, textBoxID.Text));
             }
+            else {
+                labelStatus.Text = database.Insert(String.Format("INSERT INTO patienten (sozialnr, name, vorname) VALUES('{0}', '{1}', '{2}')",
+                textBoxName.Text, textBoxVorname.Text, textBoxSozNr.Text));
+            }
+
+            textBoxSozNr.ReadOnly = true;
+            textBoxName.ReadOnly = true;
+            textBoxVorname.ReadOnly = true;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -97,6 +121,66 @@ namespace Patientenverwaltung_v3._0
                 dataGridView1.DataSource = tablePatienten;
             }
             
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            textBoxSozNr.ReadOnly = false;
+            textBoxName.ReadOnly = false;
+            textBoxVorname.ReadOnly = false; 
+        }
+
+        private void tabPagePatient_Enter(object sender, EventArgs e)
+        {
+            if (textBoxID.Text != "")
+            {
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
+            }
+            else {
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+        }
+
+        private void tabSuchen_Enter(object sender, EventArgs e)
+        {
+            tablePatienten = database.Select("SELECT * FROM patienten");
+            dataGridView1.DataSource = tablePatienten;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            labelStatus.Text = database.Delete(String.Format("DELETE FROM termine WHERE id_patient={0}", textBoxID.Text));
+            labelStatus.Text = database.Delete(String.Format("DELETE FROM patienten WHERE id_patient={0}", textBoxID.Text));
+
+            dataGridView1.Rows.Clear();
+
+            textBoxID.Text = null;
+            textBoxSozNr.Text = null;
+            textBoxName.Text = null;
+            textBoxVorname.Text = null;
+        }
+
+        private void tabTermine_Enter(object sender, EventArgs e)
+        {
+            tableTermine = database.Select("SELECT * FROM termine");
+            dataGridView1.DataSource = tableTermine;
+        }
+
+        private void tabPagePatient_Leave(object sender, EventArgs e)
+        {
+            labelStatus.Text = "";
+        }
+
+        private void btnAddDate_Click(object sender, EventArgs e)
+        {
+
+            labelStatus.Text = database.Insert(String.Format("INSERT INTO termine (id_patient, datum, uhrzeit_von , uhrzeit_bis) VALUES({0}, '{1}', '{2}', '{3}')",
+                textBoxID.Text, dateTimePickerDate.Value.ToString("yyyy/M/d"), textBoxFrom.Text, textBoxTo.Text));
+
+            DataTable tablePatientTermine = database.Select(String.Format("SELECT datum, uhrzeit_von, uhrzeit_bis   FROM termine WHERE id_patient= {0}", textBoxID.Text));
+            dataGridViewPatientTermine.DataSource = tablePatientTermine;
         }
     }
 }

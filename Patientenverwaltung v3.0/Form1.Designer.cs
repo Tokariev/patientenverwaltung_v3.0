@@ -30,6 +30,8 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabSuchen = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxSuche = new System.Windows.Forms.TextBox();
             this.buttonAddPatient = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabTermine = new System.Windows.Forms.TabPage();
@@ -38,6 +40,12 @@
             this.buttonHeute = new System.Windows.Forms.Button();
             this.dataGridViewTermine = new System.Windows.Forms.DataGridView();
             this.tabPagePatient = new System.Windows.Forms.TabPage();
+            this.btnDeleteDate = new System.Windows.Forms.Button();
+            this.btnAddDate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridViewPatientTermine = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxID = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
@@ -49,18 +57,18 @@
             this.buttonSpeichern = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewPatientTermine = new System.Windows.Forms.DataGridView();
-            this.textBoxSuche = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxFrom = new System.Windows.Forms.TextBox();
+            this.textBoxTo = new System.Windows.Forms.TextBox();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabTermine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermine)).BeginInit();
             this.tabPagePatient.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -89,6 +97,24 @@
             this.tabSuchen.TabIndex = 0;
             this.tabSuchen.Text = "Suchen";
             this.tabSuchen.UseVisualStyleBackColor = true;
+            this.tabSuchen.Enter += new System.EventHandler(this.tabSuchen_Enter);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(655, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Suchen:";
+            // 
+            // textBoxSuche
+            // 
+            this.textBoxSuche.Location = new System.Drawing.Point(728, 60);
+            this.textBoxSuche.Name = "textBoxSuche";
+            this.textBoxSuche.Size = new System.Drawing.Size(180, 26);
+            this.textBoxSuche.TabIndex = 2;
+            this.textBoxSuche.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // buttonAddPatient
             // 
@@ -125,6 +151,7 @@
             this.tabTermine.TabIndex = 1;
             this.tabTermine.Text = "Termine";
             this.tabTermine.UseVisualStyleBackColor = true;
+            this.tabTermine.Enter += new System.EventHandler(this.tabTermine_Enter);
             // 
             // dateTimePickerVon
             // 
@@ -156,12 +183,22 @@
             this.dataGridViewTermine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTermine.Location = new System.Drawing.Point(3, 101);
             this.dataGridViewTermine.Name = "dataGridViewTermine";
+            this.dataGridViewTermine.ReadOnly = true;
+            this.dataGridViewTermine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewTermine.Size = new System.Drawing.Size(911, 351);
             this.dataGridViewTermine.TabIndex = 0;
             // 
             // tabPagePatient
             // 
             this.tabPagePatient.BackColor = System.Drawing.Color.Transparent;
+            this.tabPagePatient.Controls.Add(this.dateTimePickerDate);
+            this.tabPagePatient.Controls.Add(this.label6);
+            this.tabPagePatient.Controls.Add(this.textBoxTo);
+            this.tabPagePatient.Controls.Add(this.textBoxFrom);
+            this.tabPagePatient.Controls.Add(this.btnDeleteDate);
+            this.tabPagePatient.Controls.Add(this.btnAddDate);
+            this.tabPagePatient.Controls.Add(this.btnDelete);
+            this.tabPagePatient.Controls.Add(this.btnEdit);
             this.tabPagePatient.Controls.Add(this.label5);
             this.tabPagePatient.Controls.Add(this.dataGridViewPatientTermine);
             this.tabPagePatient.Controls.Add(this.pictureBox1);
@@ -181,14 +218,80 @@
             this.tabPagePatient.Size = new System.Drawing.Size(914, 532);
             this.tabPagePatient.TabIndex = 2;
             this.tabPagePatient.Text = "Patient";
+            this.tabPagePatient.Enter += new System.EventHandler(this.tabPagePatient_Enter);
+            this.tabPagePatient.Leave += new System.EventHandler(this.tabPagePatient_Leave);
+            // 
+            // btnDeleteDate
+            // 
+            this.btnDeleteDate.Location = new System.Drawing.Point(482, 330);
+            this.btnDeleteDate.Name = "btnDeleteDate";
+            this.btnDeleteDate.Size = new System.Drawing.Size(49, 49);
+            this.btnDeleteDate.TabIndex = 16;
+            this.btnDeleteDate.Text = "-";
+            this.btnDeleteDate.UseVisualStyleBackColor = true;
+            // 
+            // btnAddDate
+            // 
+            this.btnAddDate.Location = new System.Drawing.Point(482, 232);
+            this.btnAddDate.Name = "btnAddDate";
+            this.btnAddDate.Size = new System.Drawing.Size(49, 49);
+            this.btnAddDate.TabIndex = 15;
+            this.btnAddDate.Text = "+";
+            this.btnAddDate.UseVisualStyleBackColor = true;
+            this.btnAddDate.Click += new System.EventHandler(this.btnAddDate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(528, 459);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(122, 47);
+            this.btnDelete.TabIndex = 14;
+            this.btnDelete.Text = "Löschen";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(656, 459);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(122, 47);
+            this.btnEdit.TabIndex = 13;
+            this.btnEdit.Text = "Ändern";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 190);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Termine: ";
+            // 
+            // dataGridViewPatientTermine
+            // 
+            this.dataGridViewPatientTermine.AllowUserToAddRows = false;
+            this.dataGridViewPatientTermine.AllowUserToDeleteRows = false;
+            this.dataGridViewPatientTermine.AllowUserToResizeColumns = false;
+            this.dataGridViewPatientTermine.AllowUserToResizeRows = false;
+            this.dataGridViewPatientTermine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewPatientTermine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPatientTermine.Location = new System.Drawing.Point(28, 232);
+            this.dataGridViewPatientTermine.Name = "dataGridViewPatientTermine";
+            this.dataGridViewPatientTermine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewPatientTermine.Size = new System.Drawing.Size(448, 147);
+            this.dataGridViewPatientTermine.TabIndex = 11;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(366, 63);
+            this.pictureBox1.Location = new System.Drawing.Point(537, 20);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(165, 147);
+            this.pictureBox1.Size = new System.Drawing.Size(369, 359);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -197,7 +300,7 @@
             // textBoxID
             // 
             this.textBoxID.Enabled = false;
-            this.textBoxID.Location = new System.Drawing.Point(165, 20);
+            this.textBoxID.Location = new System.Drawing.Point(149, 20);
             this.textBoxID.Name = "textBoxID";
             this.textBoxID.Size = new System.Drawing.Size(51, 26);
             this.textBoxID.TabIndex = 9;
@@ -213,8 +316,9 @@
             // 
             // textBoxSozNr
             // 
-            this.textBoxSozNr.Location = new System.Drawing.Point(165, 63);
+            this.textBoxSozNr.Location = new System.Drawing.Point(149, 64);
             this.textBoxSozNr.Name = "textBoxSozNr";
+            this.textBoxSozNr.ReadOnly = true;
             this.textBoxSozNr.Size = new System.Drawing.Size(195, 26);
             this.textBoxSozNr.TabIndex = 7;
             // 
@@ -237,21 +341,23 @@
             // 
             // textBoxVorname
             // 
-            this.textBoxVorname.Location = new System.Drawing.Point(165, 141);
+            this.textBoxVorname.Location = new System.Drawing.Point(149, 141);
             this.textBoxVorname.Name = "textBoxVorname";
-            this.textBoxVorname.Size = new System.Drawing.Size(195, 26);
+            this.textBoxVorname.ReadOnly = true;
+            this.textBoxVorname.Size = new System.Drawing.Size(250, 26);
             this.textBoxVorname.TabIndex = 4;
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(165, 103);
+            this.textBoxName.Location = new System.Drawing.Point(149, 103);
             this.textBoxName.Name = "textBoxName";
+            this.textBoxName.ReadOnly = true;
             this.textBoxName.Size = new System.Drawing.Size(195, 26);
             this.textBoxName.TabIndex = 3;
             // 
             // buttonSpeichern
             // 
-            this.buttonSpeichern.Location = new System.Drawing.Point(789, 482);
+            this.buttonSpeichern.Location = new System.Drawing.Point(784, 459);
             this.buttonSpeichern.Name = "buttonSpeichern";
             this.buttonSpeichern.Size = new System.Drawing.Size(122, 47);
             this.buttonSpeichern.TabIndex = 2;
@@ -277,45 +383,35 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name: ";
             // 
-            // dataGridViewPatientTermine
+            // label6
             // 
-            this.dataGridViewPatientTermine.AllowUserToAddRows = false;
-            this.dataGridViewPatientTermine.AllowUserToDeleteRows = false;
-            this.dataGridViewPatientTermine.AllowUserToResizeColumns = false;
-            this.dataGridViewPatientTermine.AllowUserToResizeRows = false;
-            this.dataGridViewPatientTermine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewPatientTermine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatientTermine.Location = new System.Drawing.Point(165, 216);
-            this.dataGridViewPatientTermine.Name = "dataGridViewPatientTermine";
-            this.dataGridViewPatientTermine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatientTermine.Size = new System.Drawing.Size(371, 147);
-            this.dataGridViewPatientTermine.TabIndex = 11;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(383, 195);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(14, 20);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "-";
             // 
-            // textBoxSuche
+            // textBoxFrom
             // 
-            this.textBoxSuche.Location = new System.Drawing.Point(728, 60);
-            this.textBoxSuche.Name = "textBoxSuche";
-            this.textBoxSuche.Size = new System.Drawing.Size(180, 26);
-            this.textBoxSuche.TabIndex = 2;
-            this.textBoxSuche.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxFrom.Location = new System.Drawing.Point(304, 191);
+            this.textBoxFrom.Name = "textBoxFrom";
+            this.textBoxFrom.Size = new System.Drawing.Size(77, 26);
+            this.textBoxFrom.TabIndex = 18;
             // 
-            // label4
+            // textBoxTo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(655, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Suchen:";
+            this.textBoxTo.Location = new System.Drawing.Point(399, 192);
+            this.textBoxTo.Name = "textBoxTo";
+            this.textBoxTo.Size = new System.Drawing.Size(77, 26);
+            this.textBoxTo.TabIndex = 19;
             // 
-            // label5
+            // dateTimePickerDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 216);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 20);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Termine: ";
+            this.dateTimePickerDate.Location = new System.Drawing.Point(149, 191);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(137, 26);
+            this.dateTimePickerDate.TabIndex = 21;
             // 
             // Form1
             // 
@@ -334,8 +430,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermine)).EndInit();
             this.tabPagePatient.ResumeLayout(false);
             this.tabPagePatient.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -367,6 +463,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxSuche;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnDeleteDate;
+        private System.Windows.Forms.Button btnAddDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxTo;
+        private System.Windows.Forms.TextBox textBoxFrom;
     }
 }
 

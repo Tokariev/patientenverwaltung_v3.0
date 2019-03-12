@@ -12,7 +12,7 @@ namespace Patientenverwaltung_v3._0
 {
     class DBConnect
     {
-        private MySqlConnection connection;
+        private static MySqlConnection connection;
         private string server;
         private string database;
         private string uid;
@@ -33,7 +33,8 @@ namespace Patientenverwaltung_v3._0
             password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";" +
+            "Convert Zero Datetime = True;";
 
             connection = new MySqlConnection(connectionString);
         }
@@ -105,44 +106,67 @@ namespace Patientenverwaltung_v3._0
                 {
                     return ex.Message;
                 }
+                finally {
+                    this.CloseConnection();
+                }
             }
             return "OK";
         }
 
         //Update statement
-        public void Update()
+        public string Update(string query_param)
         {
-            string query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
-
+            string query = query_param;
+            
             //Open connection
             if (this.OpenConnection() == true)
             {
-                //create mysql command
-                MySqlCommand cmd = new MySqlCommand();
-                //Assign the query using CommandText
-                cmd.CommandText = query;
-                //Assign the connection using Connection
-                cmd.Connection = connection;
+                try
+                {
+                    //create mysql command
+                    MySqlCommand cmd = new MySqlCommand();
+                    //Assign the query using CommandText
+                    cmd.CommandText = query;
+                    //Assign the connection using Connection
+                    cmd.Connection = connection;
 
-                //Execute query
-                cmd.ExecuteNonQuery();
+                    //Execute query
+                    cmd.ExecuteNonQuery();
 
-                //close connection
-                this.CloseConnection();
+                    //close connection
+                    this.CloseConnection();
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+                finally {
+                    this.CloseConnection();
+                }
             }
+            return "Updated";
         }
 
         //Delete statement
-        public void Delete()
+        public string Delete(string query_param)
         {
-            string query = "DELETE FROM tableinfo WHERE name='John Smith'";
+            string query = query_param;
 
             if (this.OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-                this.CloseConnection();
+                try {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.ExecuteNonQuery();
+                    this.CloseConnection();
+
+                }
+                catch (Exception ex)
+                {
+                    this.CloseConnection();
+                    return ex.Message;
+                }
             }
+            return "Deleted";
         }
 
         //Select statement
@@ -153,17 +177,26 @@ namespace Patientenverwaltung_v3._0
             string query = query_param;
             if (this.OpenConnection() == true)
             {
-                //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                try
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);               
-                adapter.Fill(table);
-                
-                //close Connection
-                this.CloseConnection();
-                
-                //return table to be displayed
-                return table;
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    adapter.Fill(table);
+
+                    //close Connection
+                    this.CloseConnection();
+
+                    //return table to be displayed
+                    return table;
+                }
+                catch (Exception ex)
+                {
+                    this.CloseConnection();
+                    MessageBox.Show(ex.Message);
+                    return table;
+                }
             }
             else
             {
