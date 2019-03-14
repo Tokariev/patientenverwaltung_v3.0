@@ -104,10 +104,9 @@ namespace Patientenverwaltung_v3._0
                 }
                 catch (Exception ex)
                 {
-                    return ex.Message;
-                }
-                finally {
                     this.CloseConnection();
+                    MessageBox.Show(ex.Message);
+                    return ex.Message;
                 }
             }
             return "OK";
@@ -138,10 +137,8 @@ namespace Patientenverwaltung_v3._0
                 }
                 catch (Exception ex)
                 {
-                    return ex.Message;
-                }
-                finally {
                     this.CloseConnection();
+                    return ex.Message;
                 }
             }
             return "Updated";
