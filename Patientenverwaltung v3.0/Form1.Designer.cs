@@ -50,7 +50,7 @@
             this.textBoxBefund = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxBetreff = new System.Windows.Forms.TextBox();
-            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerAppointment = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.textBoxFrom = new System.Windows.Forms.TextBox();
@@ -71,6 +71,7 @@
             this.buttonSpeichern = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -171,6 +172,7 @@
             this.dateTimePickerVon.Name = "dateTimePickerVon";
             this.dateTimePickerVon.Size = new System.Drawing.Size(200, 26);
             this.dateTimePickerVon.TabIndex = 3;
+            this.dateTimePickerVon.ValueChanged += new System.EventHandler(this.dateTimePickerVon_ValueChanged);
             // 
             // dateTimePickerBis
             // 
@@ -178,6 +180,7 @@
             this.dateTimePickerBis.Name = "dateTimePickerBis";
             this.dateTimePickerBis.Size = new System.Drawing.Size(200, 26);
             this.dateTimePickerBis.TabIndex = 2;
+            this.dateTimePickerBis.ValueChanged += new System.EventHandler(this.dateTimePickerBis_ValueChanged);
             // 
             // buttonHeute
             // 
@@ -200,10 +203,12 @@
             this.dataGridViewTermine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTermine.Size = new System.Drawing.Size(911, 351);
             this.dataGridViewTermine.TabIndex = 0;
+            this.dataGridViewTermine.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTermine_CellDoubleClick);
             // 
             // tabPagePatient
             // 
             this.tabPagePatient.BackColor = System.Drawing.Color.Transparent;
+            this.tabPagePatient.Controls.Add(this.button1);
             this.tabPagePatient.Controls.Add(this.dateTimePickerBirthday);
             this.tabPagePatient.Controls.Add(this.textBoxAdress);
             this.tabPagePatient.Controls.Add(this.textBoxGender);
@@ -214,7 +219,7 @@
             this.tabPagePatient.Controls.Add(this.textBoxBefund);
             this.tabPagePatient.Controls.Add(this.label7);
             this.tabPagePatient.Controls.Add(this.textBoxBetreff);
-            this.tabPagePatient.Controls.Add(this.dateTimePickerDate);
+            this.tabPagePatient.Controls.Add(this.dateTimePickerAppointment);
             this.tabPagePatient.Controls.Add(this.label6);
             this.tabPagePatient.Controls.Add(this.textBoxTo);
             this.tabPagePatient.Controls.Add(this.textBoxFrom);
@@ -308,7 +313,7 @@
             this.textBoxBefund.Location = new System.Drawing.Point(465, 333);
             this.textBoxBefund.Multiline = true;
             this.textBoxBefund.Name = "textBoxBefund";
-            this.textBoxBefund.Size = new System.Drawing.Size(441, 173);
+            this.textBoxBefund.Size = new System.Drawing.Size(441, 168);
             this.textBoxBefund.TabIndex = 24;
             // 
             // label7
@@ -328,12 +333,12 @@
             this.textBoxBetreff.Size = new System.Drawing.Size(441, 120);
             this.textBoxBetreff.TabIndex = 22;
             // 
-            // dateTimePickerDate
+            // dateTimePickerAppointment
             // 
-            this.dateTimePickerDate.Location = new System.Drawing.Point(466, 160);
-            this.dateTimePickerDate.Name = "dateTimePickerDate";
-            this.dateTimePickerDate.Size = new System.Drawing.Size(258, 26);
-            this.dateTimePickerDate.TabIndex = 21;
+            this.dateTimePickerAppointment.Location = new System.Drawing.Point(466, 160);
+            this.dateTimePickerAppointment.Name = "dateTimePickerAppointment";
+            this.dateTimePickerAppointment.Size = new System.Drawing.Size(258, 26);
+            this.dateTimePickerAppointment.TabIndex = 21;
             // 
             // label6
             // 
@@ -360,7 +365,7 @@
             // 
             // btnDeleteDate
             // 
-            this.btnDeleteDate.Location = new System.Drawing.Point(407, 29);
+            this.btnDeleteDate.Location = new System.Drawing.Point(407, 94);
             this.btnDeleteDate.Name = "btnDeleteDate";
             this.btnDeleteDate.Size = new System.Drawing.Size(49, 49);
             this.btnDeleteDate.TabIndex = 16;
@@ -370,7 +375,7 @@
             // 
             // btnAddDate
             // 
-            this.btnAddDate.Location = new System.Drawing.Point(407, 84);
+            this.btnAddDate.Location = new System.Drawing.Point(407, 29);
             this.btnAddDate.Name = "btnAddDate";
             this.btnAddDate.Size = new System.Drawing.Size(49, 49);
             this.btnAddDate.TabIndex = 15;
@@ -381,7 +386,7 @@
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(131, 448);
+            this.btnDelete.Location = new System.Drawing.Point(131, 443);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(112, 58);
             this.btnDelete.TabIndex = 14;
@@ -392,7 +397,7 @@
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(13, 448);
+            this.btnEdit.Location = new System.Drawing.Point(13, 443);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(112, 58);
             this.btnEdit.TabIndex = 13;
@@ -499,7 +504,7 @@
             // 
             // buttonSpeichern
             // 
-            this.buttonSpeichern.Location = new System.Drawing.Point(249, 448);
+            this.buttonSpeichern.Location = new System.Drawing.Point(249, 443);
             this.buttonSpeichern.Name = "buttonSpeichern";
             this.buttonSpeichern.Size = new System.Drawing.Size(112, 58);
             this.buttonSpeichern.TabIndex = 2;
@@ -524,6 +529,16 @@
             this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name: ";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(410, 356);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(49, 49);
+            this.button1.TabIndex = 34;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -579,7 +594,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnDeleteDate;
         private System.Windows.Forms.Button btnAddDate;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerAppointment;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxTo;
         private System.Windows.Forms.TextBox textBoxFrom;
@@ -593,6 +608,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxBefund;
+        private System.Windows.Forms.Button button1;
     }
 }
 

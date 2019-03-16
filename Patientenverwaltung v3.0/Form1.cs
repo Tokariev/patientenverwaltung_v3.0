@@ -28,10 +28,10 @@ namespace Patientenverwaltung_v3._0
 
         private void buttonAddPatient_Click(object sender, EventArgs e)
         {
-            
             tabControl.SelectedIndex = 2;
             clearPatienElements();
             unBlockPatienElements();
+            blockAppointment();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,22 +54,31 @@ namespace Patientenverwaltung_v3._0
             if (textBoxID.Text != "")
             {
                 //string query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
-                database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}' WHERE id_patient={3}",
+                labelStatus.Text = database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}' WHERE id_patient={3}",
                 textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text, textBoxID.Text));
-
+                blockPatienElements();
             }
-            else {
+            else if (textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "")
+            {
 
                 //Add new patient
                 database.Insert(String.Format("INSERT INTO patienten (sozialnr, name, vorname) VALUES({0}, '{1}', '{2}')",
-                textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text ));
+                textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text));
 
-                tablePatienten = database.Select(String.Format("SELECT id_patient FROM patienten WHERE sozialnr={0}", 
+                tablePatienten = database.Select(String.Format("SELECT id_patient FROM patienten WHERE sozialnr={0}",
                     textBoxSozNr.Text));
 
                 textBoxID.Text = tablePatienten.Rows[0][0].ToString();
+                labelStatus.BackColor = Color.Transparent;
+                MessageBox.Show("Der Patient wurde angelegt");
+                blockPatienElements();
+
+                unblockAppointment();
             }
-            blockPatienElements();
+            else {
+                labelStatus.Text = "Bitte pflegen Sie alle notwendiege Felder des Panietens!";
+                labelStatus.BackColor = Color.Red;
+            } 
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -126,6 +135,7 @@ namespace Patientenverwaltung_v3._0
 
         private void tabPagePatient_Enter(object sender, EventArgs e)
         {
+            blockAppointment();
             if (textBoxID.Text != "")
             {
                 btnEdit.Enabled = true;
@@ -164,12 +174,25 @@ namespace Patientenverwaltung_v3._0
 
         private void btnAddDate_Click(object sender, EventArgs e)
         {
+            if (textBoxTo.Text == "")
+            {
+                unblockAppointment();
+            }
+            else if (textBoxTo.Text != "")
+            {
+                labelStatus.Text = database.Insert(String.Format("INSERT INTO termine (id_patient, datum, uhrzeit_von , uhrzeit_bis, betreff) VALUES({0}, '{1}', '{2}', '{3}', '{4}')",
+                textBoxID.Text, dateTimePickerAppointment.Value.ToString("yyyy/M/d"), textBoxFrom.Text, textBoxTo.Text, textBoxBetreff.Text));
 
-            labelStatus.Text = database.Insert(String.Format("INSERT INTO termine (id_patient, datum, uhrzeit_von , uhrzeit_bis, betreff, befund) VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}')",
-                textBoxID.Text, dateTimePickerDate.Value.ToString("yyyy/M/d"), textBoxFrom.Text, textBoxTo.Text, textBoxBetreff.Text, textBoxBefund.Text));
+                DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", textBoxID.Text));
+                dataGridViewPatientTermine.DataSource = tablePatientTermine;
 
-            DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", textBoxID.Text));
-            dataGridViewPatientTermine.DataSource = tablePatientTermine;
+                textBoxBetreff.Clear();
+                blockAppointment();
+            }
+            else {
+                MessageBox.Show("Bitte pflegen alle Daten von Termin");
+            }
+            
         }
 
         private void blockPatienElements() {
@@ -181,8 +204,7 @@ namespace Patientenverwaltung_v3._0
             textBoxGender.ReadOnly = true;
             textBoxAdress.ReadOnly = true;
             dateTimePickerBirthday.Enabled = false;
-            textBoxBefund.ReadOnly = true;
-            textBoxBetreff.ReadOnly = true;
+           
         }
         private void unBlockPatienElements()
         {
@@ -194,8 +216,6 @@ namespace Patientenverwaltung_v3._0
             textBoxGender.ReadOnly = false;
             textBoxAdress.ReadOnly = false;
             dateTimePickerBirthday.Enabled = true;
-            textBoxBefund.ReadOnly = false;
-            textBoxBetreff.ReadOnly = false;
         }
         private void clearPatienElements()
         {
@@ -246,6 +266,79 @@ namespace Patientenverwaltung_v3._0
             if (dataGridViewPatientTermine.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 selected_id_termin =  dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
+        }
+
+        private void blockAppointment() {
+            dateTimePickerAppointment.Enabled = false;
+            textBoxFrom.ReadOnly = true;
+            textBoxTo.ReadOnly = true;
+            textBoxBefund.ReadOnly = true;
+            textBoxBetreff.ReadOnly = true;
+        }
+
+        private void unblockAppointment()
+        {
+            dateTimePickerAppointment.Enabled = true;
+            textBoxFrom.ReadOnly = false;
+            textBoxTo.ReadOnly = false;
+            textBoxBetreff.ReadOnly = false;
+        }
+
+        private void dateTimePickerVon_ValueChanged(object sender, EventArgs e)
+        {
+            tableTermine = database.Select(String.Format("SELECT * FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von", 
+                dateTimePickerVon.Value.ToString("yyyy/M/d"), dateTimePickerBis.Value.ToString("yyyy/M/d")));
+            dataGridViewTermine.DataSource = tableTermine;
+        }
+
+        private void dateTimePickerBis_ValueChanged(object sender, EventArgs e)
+        {
+            tableTermine = database.Select(String.Format("SELECT * FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von",
+                dateTimePickerVon.Value.ToString("yyyy/M/d"), dateTimePickerBis.Value.ToString("yyyy/M/d")));
+            dataGridViewTermine.DataSource = tableTermine;
+        }
+
+        private void dataGridViewTermine_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tabControl.SelectedIndex = 2;
+            string strDatum = dataGridViewTermine.Rows[e.RowIndex].Cells[2].Value.ToString();
+            strDatum = strDatum.Split(' ').FirstOrDefault();
+
+            string datum = strDatum.Substring(6, 4) + "." +
+                strDatum.Substring(3, 2) + "." +
+                strDatum.Substring(0, 2);
+
+            string von = dataGridViewTermine.Rows[e.RowIndex].Cells[3].Value.ToString();
+            string bis = dataGridViewTermine.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+            tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE id_patient = " +
+                "(SELECT id_patient FROM termine WHERE datum='{0}' AND uhrzeit_von='{1}' AND uhrzeit_bis='{2}');", datum, von, bis));
+
+            string patientID = tablePatienten.Rows[0][0].ToString();
+            textBoxID.Text = patientID;
+            textBoxSozNr.Text = tablePatienten.Rows[0][1].ToString();
+            textBoxName.Text = tablePatienten.Rows[0][2].ToString();
+            textBoxVorname.Text = tablePatienten.Rows[0][3].ToString();
+            textBoxGender.Text = tablePatienten.Rows[0][4].ToString();
+            textBoxAdress.Text = tablePatienten.Rows[0][5].ToString();
+
+            tablePatienten = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient = {0}",
+                patientID));
+            dataGridViewPatientTermine.DataSource = tablePatienten;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBoxBefund.Text == "")
+            {
+                textBoxBefund.ReadOnly = false;
+            }
+            if (textBoxBefund.Text != "" ){
+                database.Update(String.Format("UPDATE termine SET befund='{0}' WHERE id_termin={1}",
+                textBoxBefund.Text, selected_id_termin));
+                textBoxBefund.ReadOnly = true;
             }
         }
     }
