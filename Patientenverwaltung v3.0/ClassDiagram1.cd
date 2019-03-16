@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Patientenverwaltung_v3._0.DBConnect">
+    <Position X="6.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAEQBAAAABABAAAQEAAAAAAAAAQgAAAAI=</HashCode>
+      <FileName>DBConnect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Patientenverwaltung_v3._0.Form1">
+    <Position X="1.5" Y="0.5" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>OgEhmABAASAAgBhIkACgkEUSIGoZEAABJVxIxEAwTWQ=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
