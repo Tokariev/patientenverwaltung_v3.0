@@ -386,7 +386,7 @@ namespace Patientenverwaltung_v3._0
                 textBoxBetreff.Text = betreff;
                 string befund = termine.Rows[0][1].ToString();
                 textBoxBefund.Text = befund;
-
+                //
             }
         }
     }
