@@ -439,7 +439,7 @@
             this.dataGridViewPatientTermine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPatientTermine.Size = new System.Drawing.Size(440, 137);
             this.dataGridViewPatientTermine.TabIndex = 11;
-            this.dataGridViewPatientTermine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatientTermine_CellClick);
+            this.dataGridViewPatientTermine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatientTermine_CellClick_1);
             this.dataGridViewPatientTermine.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatientTermine_CellDoubleClick);
             // 
             // pictureBox
