@@ -63,6 +63,11 @@ namespace Patientenverwaltung_v3._0
                     case 1045:
                         MessageBox.Show("Invalid username/password, please try again");
                         break;
+
+                    default:
+                        MessageBox.Show("Unknown Error");
+                        break;
+
                 }
                 return false;
             }
@@ -84,9 +89,9 @@ namespace Patientenverwaltung_v3._0
         }
 
         //Insert statement
-        public string Insert(string query_param)
+        public string Insert(string query)
         {
-            string query = query_param;
+            
             
             //open connection
             if (this.OpenConnection() == true)
@@ -101,6 +106,7 @@ namespace Patientenverwaltung_v3._0
 
                     //close connection
                     this.CloseConnection();
+                    return "Daten wurden gespeichert";
                 }
                 catch (Exception ex)
                 {
@@ -108,14 +114,17 @@ namespace Patientenverwaltung_v3._0
                     MessageBox.Show(ex.Message);
                     return ex.Message;
                 }
+            } else
+            {
+                return "Es konnte keine Verbindung zur Datenbank hergestellt werden!";
             }
-            return "OK";
+            
         }
 
         //Update statement
-        public string Update(string query_param)
+        public string Update(string query)
         {
-            string query = query_param;
+            
             
             //Open connection
             if (this.OpenConnection() == true)
@@ -145,9 +154,9 @@ namespace Patientenverwaltung_v3._0
         }
 
         //Delete statement
-        public string Delete(string query_param)
+        public string Delete(string query)
         {
-            string query = query_param;
+          
 
             if (this.OpenConnection() == true)
             {
@@ -167,11 +176,11 @@ namespace Patientenverwaltung_v3._0
         }
 
         //Select statement
-        public DataTable Select(string query_param)
+        public DataTable Select(string query)
         {
             DataTable table = new DataTable();
 
-            string query = query_param;
+     
             if (this.OpenConnection() == true)
             {
                 try

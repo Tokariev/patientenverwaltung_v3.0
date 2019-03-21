@@ -290,14 +290,14 @@ namespace Patientenverwaltung_v3._0
 
         private void dateTimePickerVon_ValueChanged(object sender, EventArgs e)
         {
-            tableTermine = database.Select(String.Format("SELECT * FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von", 
+            tableTermine = database.Select(String.Format("SELECT datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von", 
                 dateTimePickerVon.Value.ToString("yyyy/M/d"), dateTimePickerBis.Value.ToString("yyyy/M/d")));
             dataGridViewTermine.DataSource = tableTermine;
         }
 
         private void dateTimePickerBis_ValueChanged(object sender, EventArgs e)
         {
-            tableTermine = database.Select(String.Format("SELECT * FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von",
+            tableTermine = database.Select(String.Format("SELECT datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von",
                 dateTimePickerVon.Value.ToString("yyyy/M/d"), dateTimePickerBis.Value.ToString("yyyy/M/d")));
             dataGridViewTermine.DataSource = tableTermine;
         }
@@ -305,15 +305,15 @@ namespace Patientenverwaltung_v3._0
         private void dataGridViewTermine_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             tabControl.SelectedIndex = 2;
-            string strDatum = dataGridViewTermine.Rows[e.RowIndex].Cells[2].Value.ToString();
+            string strDatum = dataGridViewTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
             strDatum = strDatum.Split(' ').FirstOrDefault();
 
             string datum = strDatum.Substring(6, 4) + "." +
                 strDatum.Substring(3, 2) + "." +
                 strDatum.Substring(0, 2);
 
-            string von = dataGridViewTermine.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string bis = dataGridViewTermine.Rows[e.RowIndex].Cells[4].Value.ToString();
+            string von = dataGridViewTermine.Rows[e.RowIndex].Cells[1].Value.ToString();
+            string bis = dataGridViewTermine.Rows[e.RowIndex].Cells[2].Value.ToString();
 
             tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE id_patient = " +
                 "(SELECT id_patient FROM termine WHERE datum='{0}' AND uhrzeit_von='{1}' AND uhrzeit_bis='{2}');", datum, von, bis));
