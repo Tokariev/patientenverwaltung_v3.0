@@ -1,4 +1,6 @@
-﻿namespace Patientenverwaltung_v3._0
+﻿using System.Windows.Forms;
+
+namespace Patientenverwaltung_v3._0
 {
     partial class Form1
     {
@@ -40,6 +42,7 @@
             this.buttonHeute = new System.Windows.Forms.Button();
             this.dataGridViewTermine = new System.Windows.Forms.DataGridView();
             this.tabPagePatient = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             this.textBoxAdress = new System.Windows.Forms.TextBox();
@@ -72,6 +75,7 @@
             this.buttonSpeichern = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -208,6 +212,8 @@
             // tabPagePatient
             // 
             this.tabPagePatient.BackColor = System.Drawing.Color.Transparent;
+            this.tabPagePatient.Controls.Add(this.label13);
+            this.tabPagePatient.Controls.Add(this.label12);
             this.tabPagePatient.Controls.Add(this.button1);
             this.tabPagePatient.Controls.Add(this.dateTimePickerBirthday);
             this.tabPagePatient.Controls.Add(this.textBoxAdress);
@@ -248,6 +254,15 @@
             this.tabPagePatient.Text = "Patient";
             this.tabPagePatient.Enter += new System.EventHandler(this.tabPagePatient_Enter);
             this.tabPagePatient.Leave += new System.EventHandler(this.tabPagePatient_Leave);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(375, 289);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 20);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "label12";
             // 
             // button1
             // 
@@ -541,6 +556,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name: ";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(367, 7);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(19, 520);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,6 +634,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxBefund;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label12;
+        private Control DrawLine;
+        private Label label13;
     }
 }
 
