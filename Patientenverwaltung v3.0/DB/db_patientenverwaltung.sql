@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 16 2019 г., 16:05
+-- Время создания: Мар 21 2019 г., 11:39
 -- Версия сервера: 10.1.34-MariaDB
 -- Версия PHP: 7.2.8
 
@@ -43,27 +43,10 @@ CREATE TABLE `patienten` (
 --
 
 INSERT INTO `patienten` (`id_patient`, `sozialnr`, `name`, `vorname`, `geschlecht`, `adresse`, `geburtsdatum`) VALUES
-(1, 3456789, 'abc', 'def', 'ghi', 'straße', '2019-05-30'),
-(14, 122222, 'Vorname', '123', NULL, NULL, NULL),
-(19, 8888, 'Name', 'Vorname', NULL, NULL, NULL),
-(20, 123333333, 'CCCC', 'BBBBBBBB', NULL, NULL, NULL),
-(21, 222222333, 'sdsd', 'asdasd', NULL, NULL, NULL),
-(22, 4535352, '', '', NULL, NULL, NULL),
-(23, 326545636, 'asdfadf', 'adfafafa', NULL, NULL, NULL),
-(25, 31234, 'qwerq', 'qwer', NULL, NULL, NULL),
-(26, 23452354, 'rwrtw', 'wert', NULL, NULL, NULL),
-(27, 12221111, '', '', NULL, NULL, NULL),
-(28, 9090909, '1212121', '', NULL, NULL, NULL),
-(29, 54321, 'Kolya', 'Mykola', NULL, NULL, NULL),
-(30, 88888888, 'Marco', 'Schmidt', NULL, NULL, NULL),
-(31, 221212, 'A', 'sss', NULL, NULL, NULL),
-(32, 345261, 'qewr', 'qwer', NULL, NULL, NULL),
-(33, 234523456, 'As', 'as', NULL, NULL, NULL),
-(34, 52345, 'df', 'sdf', NULL, NULL, NULL),
-(35, 34565, 'gsfg', 'sdfgs', NULL, NULL, NULL),
-(36, 234, 'wer', 'qwer', NULL, NULL, NULL),
-(37, 7689099, 'ghkchkg', 'fghkjfghk', NULL, NULL, NULL),
-(38, 34535, 'werwrew', 'qwerqwe', NULL, NULL, NULL);
+(39, 176425, 'Joschua', 'Grieche', 'm', 'Dodostr. 167', '1937-04-03'),
+(40, 382585, 'Rita', 'Sack', 'f', 'Steinkamp 83', '1954-04-03'),
+(41, 850905, 'Felicitas', 'Rohde', 'f', 'Willingrott 184', '1987-08-07'),
+(42, 761482, 'Lars', 'Kronenberg', 'm', 'Sternstr. 187', '1949-01-07');
 
 -- --------------------------------------------------------
 
@@ -86,26 +69,11 @@ CREATE TABLE `termine` (
 --
 
 INSERT INTO `termine` (`id_termin`, `id_patient`, `datum`, `uhrzeit_von`, `uhrzeit_bis`, `betreff`, `befund`) VALUES
-(16, 14, '2019-03-12', '00:00:00', '00:00:00', '', NULL),
-(21, 29, '2019-03-14', '10:00:00', '14:00:00', '', ''),
-(22, 29, '2019-03-14', '10:00:00', '14:00:00', '', ''),
-(23, 29, '2019-03-14', '10:00:00', '14:00:00', '', ''),
-(28, 29, '2019-03-14', '00:00:11', '00:00:12', '', ''),
-(29, 29, '2019-03-14', '04:00:00', '05:00:00', '', ''),
-(30, 29, '2019-03-14', '00:00:00', '00:00:00', '', ''),
-(31, 29, '2019-03-14', '00:00:00', '00:00:00', 'sdfasdf', 'asdfaf'),
-(32, 28, '2019-03-14', '00:00:00', '00:00:00', 'Some Text', 'Some Text'),
-(33, 28, '2019-03-14', '00:00:00', '00:00:00', 'Dann', 'Noch'),
-(34, 34, '2019-03-16', '11:00:00', '12:00:00', 'Betetejydcny', ''),
-(35, 35, '2019-03-16', '04:00:00', '05:00:00', 'aweaerwerqwerqwerqwer', ''),
-(36, 36, '2019-03-16', '05:00:00', '05:00:00', 'asdfasdfasdfa', ''),
-(38, 1, '2019-03-16', '10:00:00', '12:00:00', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata', ''),
-(39, 1, '2019-03-16', '12:00:00', '13:00:00', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ', ''),
-(40, 34, '2019-03-16', '22:00:00', '23:00:00', '', 'Some '),
-(41, 34, '2019-03-16', '05:00:00', '06:00:00', 'Lorem Ipsum für Designer, Schriftsetzer, Layouter, Grafikenthusiasten und alle anderen. Generiere einfach soviel Lorem Ipsum Text wie du brauchst, kopiere', '41'),
-(42, 1, '2019-03-16', '08:00:00', '09:00:00', 'Lorem Ipsum für Designer, Schriftsetzer, Layouter, Grafikenthusiasten und alle anderen. Generiere einfach soviel Lorem Ipsum Text wie du brauchst, kopiere', ''),
-(43, 35, '2019-03-16', '07:00:00', '09:00:00', 'Lorem Ipsum für Designer, Schriftsetzer, Layouter, Grafikenthusiasten und alle anderen. Generiere einfach soviel Lorem Ipsum Text wie du brauchst, kopiere', ''),
-(44, 38, '2019-03-16', '00:00:11', '00:00:12', '', 'fertig');
+(45, 42, '2019-02-23', '07:30:00', '08:30:00', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et', 'Befund bezeichnet medizinisch relevante, körperliche oder psychische Erscheinungen, Gegebenheiten, Veränderungen und Zustände eines Patienten, die durch Fachpersonal (Ärzte, anderes medizinisches Personal) als Untersuchungsresultat erhoben werden. '),
+(48, 42, '2019-03-21', '12:00:00', '13:00:00', 'Blindtext wird im Design als Platzhalter verwendet, wenn es noch keinen konkreten Text gibt, damit man sich den Flyer oder die neue Website besser vorstellen kann.', NULL),
+(49, 42, '2019-03-21', '15:00:00', '16:00:00', 'Alles Käse? Auch hierfür gibt es einen Blindtext-Generator. Mit Mozzarella, Cheeseburger, Fondue, Camembert und mehr lässt sich ein zufälliger Blindtext mit »cheesy« Begriffen, Phrasen und Texten generieren.', NULL),
+(50, 40, '2019-03-20', '18:00:00', '19:00:00', 'Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen Sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans.', NULL),
+(51, 40, '2019-03-22', '19:00:00', '20:00:00', 'Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien. Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen. Nicht einmal von der allmächtigen Interpunktion werden die Blin', NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -132,13 +100,13 @@ ALTER TABLE `termine`
 -- AUTO_INCREMENT для таблицы `patienten`
 --
 ALTER TABLE `patienten`
-  MODIFY `id_patient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_patient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT для таблицы `termine`
 --
 ALTER TABLE `termine`
-  MODIFY `id_termin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_termin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

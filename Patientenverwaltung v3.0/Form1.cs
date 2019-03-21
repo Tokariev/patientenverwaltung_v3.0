@@ -88,10 +88,13 @@ namespace Patientenverwaltung_v3._0
             textBoxSozNr.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             textBoxName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             textBoxVorname.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            textBoxGender.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            textBoxAdress.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
 
             DataTable tablePatientTermine = database.Select("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis   FROM termine WHERE id_patient=" + ID);
             dataGridViewPatientTermine.DataSource = tablePatientTermine;
             tabControl.SelectedIndex = 2;
+            //clearPatienElements();
             blockPatienElements();
         }
 
@@ -186,7 +189,7 @@ namespace Patientenverwaltung_v3._0
                 DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", textBoxID.Text));
                 dataGridViewPatientTermine.DataSource = tablePatientTermine;
 
-                textBoxBetreff.Clear();
+                clearTerminePanel();
                 blockAppointment();
             }
             else {
@@ -340,6 +343,13 @@ namespace Patientenverwaltung_v3._0
                 textBoxBefund.Text, selected_id_termin));
                 textBoxBefund.ReadOnly = true;
             }
+        }
+
+        private void clearTerminePanel() {
+            textBoxFrom.Clear();
+            textBoxTo.Clear();
+            textBoxBetreff.Clear();
+            textBoxBefund.Clear();
         }
     }
 }

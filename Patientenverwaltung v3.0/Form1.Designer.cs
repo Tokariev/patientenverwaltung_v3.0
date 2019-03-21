@@ -40,6 +40,7 @@
             this.buttonHeute = new System.Windows.Forms.Button();
             this.dataGridViewTermine = new System.Windows.Forms.DataGridView();
             this.tabPagePatient = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             this.textBoxAdress = new System.Windows.Forms.TextBox();
             this.textBoxGender = new System.Windows.Forms.TextBox();
@@ -71,7 +72,6 @@
             this.buttonSpeichern = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -248,6 +248,16 @@
             this.tabPagePatient.Text = "Patient";
             this.tabPagePatient.Enter += new System.EventHandler(this.tabPagePatient_Enter);
             this.tabPagePatient.Leave += new System.EventHandler(this.tabPagePatient_Leave);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(410, 356);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(49, 49);
+            this.button1.TabIndex = 34;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dateTimePickerBirthday
             // 
@@ -436,6 +446,7 @@
             // 
             this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Image = global::Patientenverwaltung_v3._0.Properties.Resources.patient_2;
             this.pictureBox.Location = new System.Drawing.Point(224, 6);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(137, 122);
@@ -530,16 +541,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name: ";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(410, 356);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(49, 49);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -547,7 +548,7 @@
             this.ClientSize = new System.Drawing.Size(1007, 615);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Patientenverwaltung";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl.ResumeLayout(false);
             this.tabSuchen.ResumeLayout(false);
