@@ -64,8 +64,12 @@ namespace Patientenverwaltung_v3._0
                         MessageBox.Show("Invalid username/password, please try again");
                         break;
 
+                    case 1042:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
+
                     default:
-                        MessageBox.Show("Unknown Error");
+                        MessageBox.Show("Unknown Error #" + Convert.ToString(ex.Number));
                         break;
 
                 }
