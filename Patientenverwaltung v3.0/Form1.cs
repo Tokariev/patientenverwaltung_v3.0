@@ -373,7 +373,7 @@ namespace Patientenverwaltung_v3._0
             if (textBoxID.Text != "")
             {
                 string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
-
+                selected_id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
                 DataTable termine = database.Select(String.Format("SELECT betreff, befund, uhrzeit_von, uhrzeit_bis, datum FROM termine WHERE id_termin = {0} ",
                     id_termin));
 
