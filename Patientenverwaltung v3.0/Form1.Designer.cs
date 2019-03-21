@@ -256,11 +256,11 @@ namespace Patientenverwaltung_v3._0
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(367, 7);
+			this.label13.Location = new System.Drawing.Point(367, 3);
 			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(19, 520);
+			this.label13.Size = new System.Drawing.Size(19, 500);
 			this.label13.TabIndex = 36;
-			this.label13.Text = "|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n";
+			this.label13.Text = "|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|";
 			// 
 			// button1
 			// 
