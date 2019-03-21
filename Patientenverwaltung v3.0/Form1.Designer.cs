@@ -415,7 +415,7 @@ namespace Patientenverwaltung_v3._0
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(112, 58);
             this.btnDelete.TabIndex = 14;
-            this.btnDelete.Text = "Löschen";
+            this.btnDelete.Text = "Patient löschen";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -426,7 +426,7 @@ namespace Patientenverwaltung_v3._0
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(112, 58);
             this.btnEdit.TabIndex = 13;
-            this.btnEdit.Text = "Ändern";
+            this.btnEdit.Text = "Patient ändern";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 

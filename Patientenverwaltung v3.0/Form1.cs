@@ -264,13 +264,7 @@ namespace Patientenverwaltung_v3._0
             }
         }
 
-        private void dataGridViewPatientTermine_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridViewPatientTermine.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-            {
-                selected_id_termin =  dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
-            }
-        }
+
 
         private void blockAppointment() {
             dateTimePickerAppointment.Enabled = false;
@@ -350,6 +344,50 @@ namespace Patientenverwaltung_v3._0
             textBoxTo.Clear();
             textBoxBetreff.Clear();
             textBoxBefund.Clear();
+        }
+
+        private void dataGridViewPatientTermine_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (textBoxID.Text != "")
+            {
+                string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                DataTable termine = database.Select(String.Format("SELECT betreff, befund, uhrzeit_von, uhrzeit_bis, datum FROM termine WHERE id_termin = {0} ",
+                    id_termin));
+
+                textBoxFrom.Text = termine.Rows[0][2].ToString();
+                textBoxTo.Text = termine.Rows[0][3].ToString();
+
+                dateTimePickerAppointment.Text = termine.Rows[0][4].ToString();
+
+                string betreff = termine.Rows[0][0].ToString();
+                textBoxBetreff.Text = betreff;
+                string befund = termine.Rows[0][1].ToString();
+                textBoxBefund.Text = befund;
+                 
+            }
+        }
+
+        private void dataGridViewPatientTermine_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (textBoxID.Text != "")
+            {
+                string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                DataTable termine = database.Select(String.Format("SELECT betreff, befund, uhrzeit_von, uhrzeit_bis, datum FROM termine WHERE id_termin = {0} ",
+                    id_termin));
+
+                textBoxFrom.Text = termine.Rows[0][2].ToString();
+                textBoxTo.Text = termine.Rows[0][3].ToString();
+
+                dateTimePickerAppointment.Text = termine.Rows[0][4].ToString();
+
+                string betreff = termine.Rows[0][0].ToString();
+                textBoxBetreff.Text = betreff;
+                string befund = termine.Rows[0][1].ToString();
+                textBoxBefund.Text = befund;
+
+            }
         }
     }
 }
