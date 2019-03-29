@@ -82,7 +82,8 @@ namespace Patientenverwaltung_v3._0
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString() != "") //Hier wird geprüft, ob die angeklickte Spalte die Überschrift ist, oder keinen Inhalt hat.
+            { 
             string ID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             textBoxID.Text = ID;
             textBoxSozNr.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -96,6 +97,7 @@ namespace Patientenverwaltung_v3._0
             tabControl.SelectedIndex = 2;
             //clearPatienElements();
             blockPatienElements();
+        }
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
