@@ -44,22 +44,34 @@ namespace Patientenverwaltung_v3._0
             this.buttonHeute = new System.Windows.Forms.Button();
             this.dataGridViewTermine = new System.Windows.Forms.DataGridView();
             this.tabPagePatient = new System.Windows.Forms.TabPage();
+            this.panelLinks = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonSpeichern = new System.Windows.Forms.Button();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxVorname = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButtonw = new System.Windows.Forms.RadioButton();
+            this.radioButtonm = new System.Windows.Forms.RadioButton();
+            this.textBoxSozNr = new System.Windows.Forms.TextBox();
+            this.labelID2 = new System.Windows.Forms.Label();
+            this.labelId = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.textBoxAdress = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.buttonCloseDate = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.buttonNeuTermin = new System.Windows.Forms.Button();
             this.buttonTermineAendern = new System.Windows.Forms.Button();
             this.TimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.TimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButtonw = new System.Windows.Forms.RadioButton();
-            this.radioButtonm = new System.Windows.Forms.RadioButton();
-            this.labelID2 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
-            this.textBoxAdress = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxBefund = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -68,31 +80,19 @@ namespace Patientenverwaltung_v3._0
             this.label6 = new System.Windows.Forms.Label();
             this.btnDeleteDate = new System.Windows.Forms.Button();
             this.btnAddDate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewPatientTermine = new System.Windows.Forms.DataGridView();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.labelId = new System.Windows.Forms.Label();
-            this.textBoxSozNr = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
-            this.textBoxVorname = new System.Windows.Forms.TextBox();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.buttonSpeichern = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelLinks = new System.Windows.Forms.Panel();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabTermine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermine)).BeginInit();
             this.tabPagePatient.SuspendLayout();
+            this.panelLinks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            this.panelLinks.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -107,7 +107,6 @@ namespace Patientenverwaltung_v3._0
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(982, 574);
             this.tabControl.TabIndex = 0;
-            this.tabControl.Enter += new System.EventHandler(this.tabControl_Enter);
             // 
             // tabSuchen
             // 
@@ -119,7 +118,7 @@ namespace Patientenverwaltung_v3._0
             this.tabSuchen.Location = new System.Drawing.Point(4, 29);
             this.tabSuchen.Name = "tabSuchen";
             this.tabSuchen.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSuchen.Size = new System.Drawing.Size(974, 572);
+            this.tabSuchen.Size = new System.Drawing.Size(974, 541);
             this.tabSuchen.TabIndex = 0;
             this.tabSuchen.Text = "Suchen";
             this.tabSuchen.UseVisualStyleBackColor = true;
@@ -191,7 +190,7 @@ namespace Patientenverwaltung_v3._0
             this.tabTermine.Location = new System.Drawing.Point(4, 29);
             this.tabTermine.Name = "tabTermine";
             this.tabTermine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTermine.Size = new System.Drawing.Size(974, 572);
+            this.tabTermine.Size = new System.Drawing.Size(974, 541);
             this.tabTermine.TabIndex = 1;
             this.tabTermine.Text = "Termine";
             this.tabTermine.UseVisualStyleBackColor = true;
@@ -268,6 +267,218 @@ namespace Patientenverwaltung_v3._0
             this.tabPagePatient.Enter += new System.EventHandler(this.tabPagePatient_Enter);
             this.tabPagePatient.Leave += new System.EventHandler(this.tabPagePatient_Leave);
             // 
+            // panelLinks
+            // 
+            this.panelLinks.Controls.Add(this.pictureBox);
+            this.panelLinks.Controls.Add(this.label1);
+            this.panelLinks.Controls.Add(this.label2);
+            this.panelLinks.Controls.Add(this.buttonSpeichern);
+            this.panelLinks.Controls.Add(this.textBoxName);
+            this.panelLinks.Controls.Add(this.textBoxVorname);
+            this.panelLinks.Controls.Add(this.label3);
+            this.panelLinks.Controls.Add(this.panel1);
+            this.panelLinks.Controls.Add(this.textBoxSozNr);
+            this.panelLinks.Controls.Add(this.labelID2);
+            this.panelLinks.Controls.Add(this.labelId);
+            this.panelLinks.Controls.Add(this.btnEdit);
+            this.panelLinks.Controls.Add(this.dateTimePickerBirthday);
+            this.panelLinks.Controls.Add(this.btnDelete);
+            this.panelLinks.Controls.Add(this.textBoxAdress);
+            this.panelLinks.Controls.Add(this.label9);
+            this.panelLinks.Controls.Add(this.label11);
+            this.panelLinks.Controls.Add(this.label10);
+            this.panelLinks.Location = new System.Drawing.Point(6, 3);
+            this.panelLinks.Name = "panelLinks";
+            this.panelLinks.Size = new System.Drawing.Size(364, 504);
+            this.panelLinks.TabIndex = 45;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Image = global::Patientenverwaltung_v3._0.Properties.Resources.patient_2;
+            this.pictureBox.Location = new System.Drawing.Point(225, 23);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(137, 122);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 10;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 157);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Name: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 194);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Vorname: ";
+            // 
+            // buttonSpeichern
+            // 
+            this.buttonSpeichern.Location = new System.Drawing.Point(250, 446);
+            this.buttonSpeichern.Name = "buttonSpeichern";
+            this.buttonSpeichern.Size = new System.Drawing.Size(112, 58);
+            this.buttonSpeichern.TabIndex = 2;
+            this.buttonSpeichern.Text = "Speichern";
+            this.buttonSpeichern.UseVisualStyleBackColor = true;
+            this.buttonSpeichern.Click += new System.EventHandler(this.buttonSpeichern_Click);
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(130, 156);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.ReadOnly = true;
+            this.textBoxName.Size = new System.Drawing.Size(232, 26);
+            this.textBoxName.TabIndex = 3;
+            // 
+            // textBoxVorname
+            // 
+            this.textBoxVorname.Location = new System.Drawing.Point(130, 194);
+            this.textBoxVorname.Name = "textBoxVorname";
+            this.textBoxVorname.ReadOnly = true;
+            this.textBoxVorname.Size = new System.Drawing.Size(232, 26);
+            this.textBoxVorname.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "SozNr: ";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButtonw);
+            this.panel1.Controls.Add(this.radioButtonm);
+            this.panel1.Location = new System.Drawing.Point(132, 227);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(230, 43);
+            this.panel1.TabIndex = 38;
+            // 
+            // radioButtonw
+            // 
+            this.radioButtonw.AutoSize = true;
+            this.radioButtonw.Location = new System.Drawing.Point(137, 9);
+            this.radioButtonw.Name = "radioButtonw";
+            this.radioButtonw.Size = new System.Drawing.Size(90, 24);
+            this.radioButtonw.TabIndex = 1;
+            this.radioButtonw.TabStop = true;
+            this.radioButtonw.Text = "Weiblich";
+            this.radioButtonw.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonm
+            // 
+            this.radioButtonm.AutoSize = true;
+            this.radioButtonm.Location = new System.Drawing.Point(3, 9);
+            this.radioButtonm.Name = "radioButtonm";
+            this.radioButtonm.Size = new System.Drawing.Size(95, 24);
+            this.radioButtonm.TabIndex = 0;
+            this.radioButtonm.TabStop = true;
+            this.radioButtonm.Text = "Männlich";
+            this.radioButtonm.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSozNr
+            // 
+            this.textBoxSozNr.Location = new System.Drawing.Point(130, 55);
+            this.textBoxSozNr.Name = "textBoxSozNr";
+            this.textBoxSozNr.ReadOnly = true;
+            this.textBoxSozNr.Size = new System.Drawing.Size(89, 26);
+            this.textBoxSozNr.TabIndex = 7;
+            // 
+            // labelID2
+            // 
+            this.labelID2.AutoSize = true;
+            this.labelID2.Location = new System.Drawing.Point(128, 24);
+            this.labelID2.Name = "labelID2";
+            this.labelID2.Size = new System.Drawing.Size(69, 20);
+            this.labelID2.TabIndex = 37;
+            this.labelID2.Text = "labelID2";
+            // 
+            // labelId
+            // 
+            this.labelId.AutoSize = true;
+            this.labelId.Location = new System.Drawing.Point(62, 23);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(33, 20);
+            this.labelId.TabIndex = 8;
+            this.labelId.Text = "ID: ";
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(14, 446);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(112, 58);
+            this.btnEdit.TabIndex = 13;
+            this.btnEdit.Text = "Patient ändern";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // dateTimePickerBirthday
+            // 
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(132, 318);
+            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(196, 26);
+            this.dateTimePickerBirthday.TabIndex = 33;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(132, 446);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(112, 58);
+            this.btnDelete.TabIndex = 14;
+            this.btnDelete.Text = "Patient löschen";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // textBoxAdress
+            // 
+            this.textBoxAdress.Location = new System.Drawing.Point(130, 276);
+            this.textBoxAdress.Name = "textBoxAdress";
+            this.textBoxAdress.ReadOnly = true;
+            this.textBoxAdress.Size = new System.Drawing.Size(232, 26);
+            this.textBoxAdress.TabIndex = 31;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 236);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(102, 20);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Geschlecht: ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 318);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(122, 20);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "Geburtsdatum: ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(20, 279);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 20);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "Adresse: ";
+            // 
             // buttonCloseDate
             // 
             this.buttonCloseDate.Image = ((System.Drawing.Image)(resources.GetObject("buttonCloseDate.Image")));
@@ -278,7 +489,7 @@ namespace Patientenverwaltung_v3._0
             this.buttonCloseDate.UseVisualStyleBackColor = true;
             this.buttonCloseDate.Visible = false;
             this.buttonCloseDate.Click += new System.EventHandler(this.buttonCloseDate_Click);
-            //  
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -328,46 +539,6 @@ namespace Patientenverwaltung_v3._0
             this.TimePickerFrom.TabIndex = 39;
             this.TimePickerFrom.Visible = false;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.radioButtonw);
-            this.panel1.Controls.Add(this.radioButtonm);
-            this.panel1.Location = new System.Drawing.Point(132, 227);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(230, 43);
-            this.panel1.TabIndex = 38;
-            // 
-            // radioButtonw
-            // 
-            this.radioButtonw.AutoSize = true;
-            this.radioButtonw.Location = new System.Drawing.Point(137, 9);
-            this.radioButtonw.Name = "radioButtonw";
-            this.radioButtonw.Size = new System.Drawing.Size(90, 24);
-            this.radioButtonw.TabIndex = 1;
-            this.radioButtonw.TabStop = true;
-            this.radioButtonw.Text = "Weiblich";
-            this.radioButtonw.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonm
-            // 
-            this.radioButtonm.AutoSize = true;
-            this.radioButtonm.Location = new System.Drawing.Point(3, 9);
-            this.radioButtonm.Name = "radioButtonm";
-            this.radioButtonm.Size = new System.Drawing.Size(95, 24);
-            this.radioButtonm.TabIndex = 0;
-            this.radioButtonm.TabStop = true;
-            this.radioButtonm.Text = "Männlich";
-            this.radioButtonm.UseVisualStyleBackColor = true;
-            // 
-            // labelID2
-            // 
-            this.labelID2.AutoSize = true;
-            this.labelID2.Location = new System.Drawing.Point(128, 24);
-            this.labelID2.Name = "labelID2";
-            this.labelID2.Size = new System.Drawing.Size(69, 20);
-            this.labelID2.TabIndex = 37;
-            this.labelID2.Text = "labelID2";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -376,48 +547,6 @@ namespace Patientenverwaltung_v3._0
             this.label13.Size = new System.Drawing.Size(19, 520);
             this.label13.TabIndex = 36;
             this.label13.Text = "|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n|\r\n\r\n";
-            // 
-            // dateTimePickerBirthday
-            // 
-            this.dateTimePickerBirthday.Location = new System.Drawing.Point(132, 318);
-            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
-            this.dateTimePickerBirthday.Size = new System.Drawing.Size(196, 26);
-            this.dateTimePickerBirthday.TabIndex = 33;
-            // 
-            // textBoxAdress
-            // 
-            this.textBoxAdress.Location = new System.Drawing.Point(130, 276);
-            this.textBoxAdress.Name = "textBoxAdress";
-            this.textBoxAdress.ReadOnly = true;
-            this.textBoxAdress.Size = new System.Drawing.Size(232, 26);
-            this.textBoxAdress.TabIndex = 31;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 318);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(122, 20);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "Geburtsdatum: ";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 279);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 20);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Adresse: ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 236);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(102, 20);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "Geschlecht: ";
             // 
             // label8
             // 
@@ -494,28 +623,6 @@ namespace Patientenverwaltung_v3._0
             this.btnAddDate.Visible = false;
             this.btnAddDate.Click += new System.EventHandler(this.btnAddDate_Click);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(132, 446);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(112, 58);
-            this.btnDelete.TabIndex = 14;
-            this.btnDelete.Text = "Patient löschen";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(14, 446);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(112, 58);
-            this.btnEdit.TabIndex = 13;
-            this.btnEdit.Text = "Patient ändern";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -543,121 +650,14 @@ namespace Patientenverwaltung_v3._0
             this.dataGridViewPatientTermine.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatientTermine_CellClick);
             this.dataGridViewPatientTermine.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatientTermine_CellDoubleClick);
             // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.Color.White;
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Image = global::Patientenverwaltung_v3._0.Properties.Resources.patient_2;
-            this.pictureBox.Location = new System.Drawing.Point(225, 23);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(137, 122);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 10;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
-            // 
-            // labelId
-            // 
-            this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(62, 23);
-            this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(33, 20);
-            this.labelId.TabIndex = 8;
-            this.labelId.Text = "ID: ";
-            // 
-            // textBoxSozNr
-            // 
-            this.textBoxSozNr.Location = new System.Drawing.Point(130, 55);
-            this.textBoxSozNr.Name = "textBoxSozNr";
-            this.textBoxSozNr.ReadOnly = true;
-            this.textBoxSozNr.Size = new System.Drawing.Size(89, 26);
-            this.textBoxSozNr.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "SozNr: ";
-            // 
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(18, 507);
+            this.labelStatus.Font = new System.Drawing.Font("Century Gothic", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStatus.Location = new System.Drawing.Point(22, 514);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(0, 20);
+            this.labelStatus.Size = new System.Drawing.Size(0, 18);
             this.labelStatus.TabIndex = 5;
-            // 
-            // textBoxVorname
-            // 
-            this.textBoxVorname.Location = new System.Drawing.Point(130, 194);
-            this.textBoxVorname.Name = "textBoxVorname";
-            this.textBoxVorname.ReadOnly = true;
-            this.textBoxVorname.Size = new System.Drawing.Size(232, 26);
-            this.textBoxVorname.TabIndex = 4;
-            // 
-            // textBoxName
-            // 
-            this.textBoxName.Location = new System.Drawing.Point(130, 156);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.ReadOnly = true;
-            this.textBoxName.Size = new System.Drawing.Size(232, 26);
-            this.textBoxName.TabIndex = 3;
-            // 
-            // buttonSpeichern
-            // 
-            this.buttonSpeichern.Location = new System.Drawing.Point(250, 446);
-            this.buttonSpeichern.Name = "buttonSpeichern";
-            this.buttonSpeichern.Size = new System.Drawing.Size(112, 58);
-            this.buttonSpeichern.TabIndex = 2;
-            this.buttonSpeichern.Text = "Speichern";
-            this.buttonSpeichern.UseVisualStyleBackColor = true;
-            this.buttonSpeichern.Click += new System.EventHandler(this.buttonSpeichern_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 194);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Vorname: ";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 157);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name: ";
-            // 
-            // panelLinks
-            // 
-            this.panelLinks.Controls.Add(this.pictureBox);
-            this.panelLinks.Controls.Add(this.label1);
-            this.panelLinks.Controls.Add(this.label2);
-            this.panelLinks.Controls.Add(this.buttonSpeichern);
-            this.panelLinks.Controls.Add(this.textBoxName);
-            this.panelLinks.Controls.Add(this.textBoxVorname);
-            this.panelLinks.Controls.Add(this.label3);
-            this.panelLinks.Controls.Add(this.panel1);
-            this.panelLinks.Controls.Add(this.textBoxSozNr);
-            this.panelLinks.Controls.Add(this.labelID2);
-            this.panelLinks.Controls.Add(this.labelId);
-            this.panelLinks.Controls.Add(this.btnEdit);
-            this.panelLinks.Controls.Add(this.dateTimePickerBirthday);
-            this.panelLinks.Controls.Add(this.btnDelete);
-            this.panelLinks.Controls.Add(this.textBoxAdress);
-            this.panelLinks.Controls.Add(this.label9);
-            this.panelLinks.Controls.Add(this.label11);
-            this.panelLinks.Controls.Add(this.label10);
-            this.panelLinks.Location = new System.Drawing.Point(6, 3);
-            this.panelLinks.Name = "panelLinks";
-            this.panelLinks.Size = new System.Drawing.Size(364, 510);
-            this.panelLinks.TabIndex = 45;
             // 
             // Form1
             // 
@@ -676,12 +676,12 @@ namespace Patientenverwaltung_v3._0
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTermine)).EndInit();
             this.tabPagePatient.ResumeLayout(false);
             this.tabPagePatient.PerformLayout();
+            this.panelLinks.ResumeLayout(false);
+            this.panelLinks.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            this.panelLinks.ResumeLayout(false);
-            this.panelLinks.PerformLayout();
             this.ResumeLayout(false);
 
         }

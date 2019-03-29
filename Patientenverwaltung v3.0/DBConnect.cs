@@ -176,7 +176,7 @@ namespace Patientenverwaltung_v3._0
                     return ex.Message;
                 }
             }
-            return "Deleted";
+            return "Daten wurden gelöscht";
         }
 
         //Select statement

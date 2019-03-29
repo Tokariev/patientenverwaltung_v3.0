@@ -228,22 +228,20 @@ namespace Patientenverwaltung_v3._0
                 DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", labelID2.Text));
                 dataGridViewPatientTermine.DataSource = tablePatientTermine;
 
-                clearTerminePanel();
-                setTerminElementsUnvisible();
-                textBoxBetreff.Enabled = false;
-                dataGridViewPatientTermine.ClearSelection();
+                
             }
             else { //Update
                 labelStatus.Text = database.Update(String.Format("UPDATE termine SET datum='{0}', uhrzeit_von='{1}', uhrzeit_bis='{2}', betreff='{3}', befund='{4}' WHERE id_termin={5}",
-                    dateTimePickerAppointment.Value.ToString("yyyy/M/d"), TimePickerFrom.Text, TimePickerTo.Text, textBoxBetreff.Text, textBoxBefund.Text, selected_id_termin));
-                setTerminElementsUnvisible();
-
-                buttonNeuTermin.Enabled = true;
-                textBoxBetreff.Enabled = false;
-                textBoxBefund.Enabled = false;
-                panelLinks.Enabled = true;
+                    dateTimePickerAppointment.Value.ToString("yyyy/M/d"), TimePickerFrom.Text, TimePickerTo.Text, textBoxBetreff.Text, textBoxBefund.Text, selected_id_termin));               
             }
+            clearTerminePanel();
+            setTerminElementsUnvisible();
+            dataGridViewPatientTermine.ClearSelection();
+            textBoxBetreff.Enabled = false;
+            textBoxBefund.Enabled = false;
+            panelLinks.Enabled = true;
             dataGridViewPatientTermine.Enabled = true;
+            buttonNeuTermin.Enabled = true;
         }
 
         private void blockPatienElements() {
@@ -314,9 +312,14 @@ namespace Patientenverwaltung_v3._0
 
         private void btnDeleteDate_Click(object sender, EventArgs e)
         {
+            if (selected_id_termin == null) {
+                MessageBox.Show("Bitte wählen Sie einen Termin aus");
+                return;
+            }
+
             if (labelID2.Text != "")
             {
-                database.Delete(String.Format("DELETE FROM termine WHERE id_termin={0}",
+                labelStatus.Text = database.Delete(String.Format("DELETE FROM termine WHERE id_termin={0}",
                 selected_id_termin));
 
                 DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient={0}",
@@ -324,6 +327,8 @@ namespace Patientenverwaltung_v3._0
 
                 dataGridViewPatientTermine.DataSource = tablePatientTermine;
                 clearTerminePanel();
+                selected_id_termin = null;
+                dataGridViewPatientTermine.ClearSelection();
             }
         }
 
@@ -455,9 +460,15 @@ namespace Patientenverwaltung_v3._0
         {
             selected_id_termin = null;
             dataGridViewPatientTermine.ClearSelection();
+            dataGridViewPatientTermine.Enabled = false;
             setTerminElementsVisible();
             textBoxBetreff.Enabled = true;
             textBoxBetreff.Clear();
+            panelLinks.Enabled = false;
+            textBoxBefund.Enabled = true;
+            buttonNeuTermin.Enabled = false;
+            clearTerminePanel();
+
             if (textBoxBetreff.Text == "")
             {
                 btnAddDate.Enabled = false;
@@ -482,6 +493,9 @@ namespace Patientenverwaltung_v3._0
             setTerminElementsUnvisible();
             textBoxBetreff.Enabled = false;
             textBoxBefund.Enabled = false;
+            panelLinks.Enabled = true;
+            dataGridViewPatientTermine.Enabled = true;
+            buttonNeuTermin.Enabled = true;
             clearTerminePanel();
         }
 
@@ -512,6 +526,10 @@ namespace Patientenverwaltung_v3._0
 
         private void buttonTermineAendern_Click(object sender, EventArgs e)
         {
+            if (selected_id_termin == null) {
+                MessageBox.Show("Bitte wählen Sie einen Termin aus");
+                return;
+            }
             setTerminElementsVisible();
             panelLinks.Enabled = false;
             dataGridViewPatientTermine.Enabled = false;
@@ -520,14 +538,5 @@ namespace Patientenverwaltung_v3._0
             buttonNeuTermin.Enabled = false;
         }
 
-        private void tabControl_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
