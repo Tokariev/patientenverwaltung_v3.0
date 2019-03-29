@@ -54,7 +54,7 @@ namespace Patientenverwaltung_v3._0
 
         private void buttonSpeichern_Click(object sender, EventArgs e)
         {
-            if (textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "") {
+            if (textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "") {   //Pflichtfelder
                 if (NeuerPatient == 0) // Wenn ein bestehender Patient bearbeitet wird.
                 {
                     labelStatus.Text = database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}' WHERE id_patient={3}",
