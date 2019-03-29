@@ -111,7 +111,8 @@ namespace Patientenverwaltung_v3._0
             tabControl.SelectedIndex = 2;
             //clearPatienElements();
             blockPatienElements();
-        }
+                dataGridViewPatientTermine.ClearSelection();
+            }
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -177,7 +178,8 @@ namespace Patientenverwaltung_v3._0
 
         private void tabPagePatient_Enter(object sender, EventArgs e)
         {
-            blockAppointment();
+            
+            //blockAppointment();
             if (labelID2.Text != "")
             {
                 btnEdit.Enabled = true;
@@ -187,6 +189,8 @@ namespace Patientenverwaltung_v3._0
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
             }
+
+            dataGridViewPatientTermine.ClearSelection();
         }
 
         private void tabSuchen_Enter(object sender, EventArgs e)
@@ -216,25 +220,30 @@ namespace Patientenverwaltung_v3._0
 
         private void btnAddDate_Click(object sender, EventArgs e)
         {
-            if (textBoxTo.Text == "")
-            {
-                unblockAppointment();
-            }
-            else if (textBoxTo.Text != "")
+            if (selected_id_termin == null) //Wenn kein Termin ausgewählt ist dann INSERT
             {
                 labelStatus.Text = database.Insert(String.Format("INSERT INTO termine (id_patient, datum, uhrzeit_von , uhrzeit_bis, betreff) VALUES({0}, '{1}', '{2}', '{3}', '{4}')",
-                labelID2.Text, dateTimePickerAppointment.Value.ToString("yyyy/M/d"), textBoxFrom.Text, textBoxTo.Text, textBoxBetreff.Text));
+                labelID2.Text, dateTimePickerAppointment.Value.ToString("yyyy/M/d"), TimePickerFrom.Text, TimePickerTo.Text, textBoxBetreff.Text));
 
                 DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", labelID2.Text));
                 dataGridViewPatientTermine.DataSource = tablePatientTermine;
 
                 clearTerminePanel();
-                blockAppointment();
+                setTerminElementsUnvisible();
+                textBoxBetreff.Enabled = false;
+                dataGridViewPatientTermine.ClearSelection();
             }
-            else {
-                MessageBox.Show("Bitte pflegen alle Daten von Termin");
+            else { //Update
+                labelStatus.Text = database.Update(String.Format("UPDATE termine SET datum='{0}', uhrzeit_von='{1}', uhrzeit_bis='{2}', betreff='{3}', befund='{4}' WHERE id_termin={5}",
+                    dateTimePickerAppointment.Value.ToString("yyyy/M/d"), TimePickerFrom.Text, TimePickerTo.Text, textBoxBetreff.Text, textBoxBefund.Text, selected_id_termin));
+                setTerminElementsUnvisible();
+
+                buttonNeuTermin.Enabled = true;
+                textBoxBetreff.Enabled = false;
+                textBoxBefund.Enabled = false;
+                panelLinks.Enabled = true;
             }
-            
+            dataGridViewPatientTermine.Enabled = true;
         }
 
         private void blockPatienElements() {
@@ -314,6 +323,7 @@ namespace Patientenverwaltung_v3._0
                     labelID2.Text));
 
                 dataGridViewPatientTermine.DataSource = tablePatientTermine;
+                clearTerminePanel();
             }
         }
 
@@ -321,8 +331,8 @@ namespace Patientenverwaltung_v3._0
 
         private void blockAppointment() {
             dateTimePickerAppointment.Enabled = false;
-            textBoxFrom.ReadOnly = true;
-            textBoxTo.ReadOnly = true;
+            TimePickerFrom.Enabled = false;
+            TimePickerTo.Enabled = false;
             textBoxBefund.ReadOnly = true;
             textBoxBetreff.ReadOnly = true;
         }
@@ -330,8 +340,8 @@ namespace Patientenverwaltung_v3._0
         private void unblockAppointment()
         {
             dateTimePickerAppointment.Enabled = true;
-            textBoxFrom.ReadOnly = false;
-            textBoxTo.ReadOnly = false;
+            TimePickerFrom.Enabled = true;
+            TimePickerTo.Enabled = true;
             textBoxBetreff.ReadOnly = false;
         }
 
@@ -409,8 +419,7 @@ namespace Patientenverwaltung_v3._0
         }
 
         private void clearTerminePanel() {
-            textBoxFrom.Clear();
-            textBoxTo.Clear();
+
             textBoxBetreff.Clear();
             textBoxBefund.Clear();
         }
@@ -428,8 +437,8 @@ namespace Patientenverwaltung_v3._0
                     DataTable termine = database.Select(String.Format("SELECT betreff, befund, uhrzeit_von, uhrzeit_bis, datum FROM termine WHERE id_termin = {0} ",
                         id_termin));
 
-                    textBoxFrom.Text = termine.Rows[0][2].ToString();
-                    textBoxTo.Text = termine.Rows[0][3].ToString();
+                    TimePickerFrom.Text = termine.Rows[0][2].ToString();
+                    TimePickerTo.Text = termine.Rows[0][3].ToString();
 
                     dateTimePickerAppointment.Text = termine.Rows[0][4].ToString();
 
@@ -440,6 +449,85 @@ namespace Patientenverwaltung_v3._0
 
                 }
             }
+        }
+
+        private void buttonNeuTermin_Click(object sender, EventArgs e)
+        {
+            selected_id_termin = null;
+            dataGridViewPatientTermine.ClearSelection();
+            setTerminElementsVisible();
+            textBoxBetreff.Enabled = true;
+            textBoxBetreff.Clear();
+            if (textBoxBetreff.Text == "")
+            {
+                btnAddDate.Enabled = false;
+            }
+            else
+            {
+                btnAddDate.Enabled = true;
+            }
+        }
+
+        public void setTerminElementsVisible() {
+            dateTimePickerAppointment.Visible = true;
+            TimePickerFrom.Visible = true;
+            TimePickerTo.Visible = true;
+            btnAddDate.Visible = true;
+            buttonCloseDate.Visible = true;
+            
+        }
+
+        private void buttonCloseDate_Click(object sender, EventArgs e)
+        {
+            setTerminElementsUnvisible();
+            textBoxBetreff.Enabled = false;
+            textBoxBefund.Enabled = false;
+            clearTerminePanel();
+        }
+
+        public void setTerminElementsUnvisible()
+        {
+            dateTimePickerAppointment.Visible = false;
+            TimePickerFrom.Visible = false;
+            TimePickerTo.Visible = false;
+            btnAddDate.Visible = false;
+            buttonCloseDate.Visible = false;
+        }
+
+        private void textBoxBetreff_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxBetreff.Text != "")
+            {
+                btnAddDate.Enabled = true;
+            }
+            else {
+                btnAddDate.Enabled = false;
+            }
+        }
+
+        private void buttonTerminAendern_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonTermineAendern_Click(object sender, EventArgs e)
+        {
+            setTerminElementsVisible();
+            panelLinks.Enabled = false;
+            dataGridViewPatientTermine.Enabled = false;
+            textBoxBetreff.Enabled = true;
+            textBoxBefund.Enabled = true;
+            buttonNeuTermin.Enabled = false;
+        }
+
+        private void tabControl_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
