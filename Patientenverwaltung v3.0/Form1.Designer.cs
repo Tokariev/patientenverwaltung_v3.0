@@ -77,6 +77,7 @@ namespace Patientenverwaltung_v3._0
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButtonm = new System.Windows.Forms.RadioButton();
             this.radioButtonw = new System.Windows.Forms.RadioButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,6 +104,7 @@ namespace Patientenverwaltung_v3._0
             // 
             // tabSuchen
             // 
+            this.tabSuchen.Controls.Add(this.comboBox1);
             this.tabSuchen.Controls.Add(this.label4);
             this.tabSuchen.Controls.Add(this.textBoxSuche);
             this.tabSuchen.Controls.Add(this.buttonAddPatient);
@@ -119,11 +121,11 @@ namespace Patientenverwaltung_v3._0
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(655, 66);
+            this.label4.Location = new System.Drawing.Point(522, 63);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Suchen:";
+            this.label4.Text = "Suche nach:";
             // 
             // textBoxSuche
             // 
@@ -581,6 +583,21 @@ namespace Patientenverwaltung_v3._0
             this.radioButtonw.Text = "Weiblich";
             this.radioButtonw.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Name",
+            "Vorname",
+            "Adresse",
+            "Geburtsdatum",
+            "Sozialnr"});
+            this.comboBox1.Location = new System.Drawing.Point(628, 60);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(94, 28);
+            this.comboBox1.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -656,6 +673,7 @@ namespace Patientenverwaltung_v3._0
         private Panel panel1;
         private RadioButton radioButtonw;
         private RadioButton radioButtonm;
+        private ComboBox comboBox1;
     }
 }
 

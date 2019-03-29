@@ -14,6 +14,7 @@ namespace Patientenverwaltung_v3._0
 {
     public partial class Form1 : Form
     {
+        
         DBConnect database = new DBConnect();
         DataTable tablePatienten;
         DataTable tableTermine;
@@ -24,7 +25,8 @@ namespace Patientenverwaltung_v3._0
         public Form1()
         {
             InitializeComponent();
-            
+            labelID2.Text = "";
+            comboBox1.SelectedIndex = 0;
         }
 
         private void buttonAddPatient_Click(object sender, EventArgs e)
@@ -135,13 +137,36 @@ namespace Patientenverwaltung_v3._0
         {
             if (textBoxSuche.Text != "")
             {
-                DataTable tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE name LIKE '{0}'", textBoxSuche.Text));
-                dataGridView1.DataSource = tablePatienten;
+                DataTable tablePatienten;
+                switch (comboBox1.SelectedIndex)
+                {
+                    case 0:
+                        tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE name LIKE '{0}'", textBoxSuche.Text));
+                        dataGridView1.DataSource = tablePatienten;
+                        break;
+                    case 1:
+                        tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE vorname LIKE '{0}'", textBoxSuche.Text));
+                        dataGridView1.DataSource = tablePatienten;
+                        break;
+                    case 2:
+                        tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE adresse LIKE '{0}'", textBoxSuche.Text));
+                        dataGridView1.DataSource = tablePatienten;
+                        break;
+                    case 3:
+                        tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE geburtsdatum LIKE '{0}'", textBoxSuche.Text));
+                        dataGridView1.DataSource = tablePatienten;
+                        break;
+                    case 4:
+                        tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE sozialnr LIKE '{0}'", textBoxSuche.Text));
+                        dataGridView1.DataSource = tablePatienten;
+                        break;
+                }
+                
             }
             else {
-                DataTable tablePatienten = database.Select("SELECT * FROM patienten");
-                dataGridView1.DataSource = tablePatienten;
-            }
+                        DataTable tablePatienten = database.Select("SELECT * FROM patienten");
+                        dataGridView1.DataSource = tablePatienten;
+                 }
             
         }
 
