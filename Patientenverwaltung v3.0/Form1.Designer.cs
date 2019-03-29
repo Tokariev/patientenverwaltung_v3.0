@@ -46,7 +46,6 @@ namespace Patientenverwaltung_v3._0
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
             this.textBoxAdress = new System.Windows.Forms.TextBox();
-            this.textBoxGender = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -65,7 +64,6 @@ namespace Patientenverwaltung_v3._0
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewPatientTermine = new System.Windows.Forms.DataGridView();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.textBoxID = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
             this.textBoxSozNr = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -75,6 +73,10 @@ namespace Patientenverwaltung_v3._0
             this.buttonSpeichern = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelID2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButtonm = new System.Windows.Forms.RadioButton();
+            this.radioButtonw = new System.Windows.Forms.RadioButton();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,6 +85,7 @@ namespace Patientenverwaltung_v3._0
             this.tabPagePatient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -211,11 +214,12 @@ namespace Patientenverwaltung_v3._0
             // tabPagePatient
             // 
             this.tabPagePatient.BackColor = System.Drawing.Color.Transparent;
+            this.tabPagePatient.Controls.Add(this.panel1);
+            this.tabPagePatient.Controls.Add(this.labelID2);
             this.tabPagePatient.Controls.Add(this.label13);
             this.tabPagePatient.Controls.Add(this.button1);
             this.tabPagePatient.Controls.Add(this.dateTimePickerBirthday);
             this.tabPagePatient.Controls.Add(this.textBoxAdress);
-            this.tabPagePatient.Controls.Add(this.textBoxGender);
             this.tabPagePatient.Controls.Add(this.label11);
             this.tabPagePatient.Controls.Add(this.label10);
             this.tabPagePatient.Controls.Add(this.label9);
@@ -234,7 +238,6 @@ namespace Patientenverwaltung_v3._0
             this.tabPagePatient.Controls.Add(this.label5);
             this.tabPagePatient.Controls.Add(this.dataGridViewPatientTermine);
             this.tabPagePatient.Controls.Add(this.pictureBox);
-            this.tabPagePatient.Controls.Add(this.textBoxID);
             this.tabPagePatient.Controls.Add(this.labelId);
             this.tabPagePatient.Controls.Add(this.textBoxSozNr);
             this.tabPagePatient.Controls.Add(this.label3);
@@ -286,14 +289,6 @@ namespace Patientenverwaltung_v3._0
             this.textBoxAdress.ReadOnly = true;
             this.textBoxAdress.Size = new System.Drawing.Size(232, 26);
             this.textBoxAdress.TabIndex = 31;
-            // 
-            // textBoxGender
-            // 
-            this.textBoxGender.Location = new System.Drawing.Point(129, 219);
-            this.textBoxGender.Name = "textBoxGender";
-            this.textBoxGender.ReadOnly = true;
-            this.textBoxGender.Size = new System.Drawing.Size(23, 26);
-            this.textBoxGender.TabIndex = 30;
             // 
             // label11
             // 
@@ -468,14 +463,6 @@ namespace Patientenverwaltung_v3._0
             this.pictureBox.TabStop = false;
             this.pictureBox.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             // 
-            // textBoxID
-            // 
-            this.textBoxID.Enabled = false;
-            this.textBoxID.Location = new System.Drawing.Point(129, 6);
-            this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(51, 26);
-            this.textBoxID.TabIndex = 9;
-            // 
             // labelId
             // 
             this.labelId.AutoSize = true;
@@ -554,6 +541,46 @@ namespace Patientenverwaltung_v3._0
             this.label1.TabIndex = 0;
             this.label1.Text = "Name: ";
             // 
+            // labelID2
+            // 
+            this.labelID2.AutoSize = true;
+            this.labelID2.Location = new System.Drawing.Point(127, 7);
+            this.labelID2.Name = "labelID2";
+            this.labelID2.Size = new System.Drawing.Size(69, 20);
+            this.labelID2.TabIndex = 37;
+            this.labelID2.Text = "labelID2";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButtonw);
+            this.panel1.Controls.Add(this.radioButtonm);
+            this.panel1.Location = new System.Drawing.Point(131, 210);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(230, 43);
+            this.panel1.TabIndex = 38;
+            // 
+            // radioButtonm
+            // 
+            this.radioButtonm.AutoSize = true;
+            this.radioButtonm.Location = new System.Drawing.Point(3, 9);
+            this.radioButtonm.Name = "radioButtonm";
+            this.radioButtonm.Size = new System.Drawing.Size(95, 24);
+            this.radioButtonm.TabIndex = 0;
+            this.radioButtonm.TabStop = true;
+            this.radioButtonm.Text = "Männlich";
+            this.radioButtonm.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonw
+            // 
+            this.radioButtonw.AutoSize = true;
+            this.radioButtonw.Location = new System.Drawing.Point(137, 9);
+            this.radioButtonw.Name = "radioButtonw";
+            this.radioButtonw.Size = new System.Drawing.Size(90, 24);
+            this.radioButtonw.TabIndex = 1;
+            this.radioButtonw.TabStop = true;
+            this.radioButtonw.Text = "Weiblich";
+            this.radioButtonw.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -573,6 +600,8 @@ namespace Patientenverwaltung_v3._0
             this.tabPagePatient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatientTermine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -597,7 +626,6 @@ namespace Patientenverwaltung_v3._0
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.TextBox textBoxSozNr;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.DataGridView dataGridViewPatientTermine;
@@ -616,7 +644,6 @@ namespace Patientenverwaltung_v3._0
         private System.Windows.Forms.TextBox textBoxBetreff;
         private System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
         private System.Windows.Forms.TextBox textBoxAdress;
-        private System.Windows.Forms.TextBox textBoxGender;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -625,6 +652,10 @@ namespace Patientenverwaltung_v3._0
         private System.Windows.Forms.Button button1;
         private Control DrawLine;
         private Label label13;
+        private Label labelID2;
+        private Panel panel1;
+        private RadioButton radioButtonw;
+        private RadioButton radioButtonm;
     }
 }
 

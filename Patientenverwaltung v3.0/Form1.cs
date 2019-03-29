@@ -19,6 +19,7 @@ namespace Patientenverwaltung_v3._0
         DataTable tableTermine;
 
         string selected_id_termin;
+        int NeuerPatient = 0;
 
         public Form1()
         {
@@ -32,6 +33,7 @@ namespace Patientenverwaltung_v3._0
             clearPatienElements();
             unBlockPatienElements();
             blockAppointment();
+            NeuerPatient = 1;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,46 +52,56 @@ namespace Patientenverwaltung_v3._0
 
         private void buttonSpeichern_Click(object sender, EventArgs e)
         {
-            //Update
-            if (textBoxID.Text != "")
-            {
-                //string query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
-                labelStatus.Text = database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}' WHERE id_patient={3}",
-                textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text, textBoxID.Text));
-                blockPatienElements();
-            }
-            else if (textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "")
-            {
+            if (textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "") {
+                if (NeuerPatient == 0) // Wenn ein bestehender Patient bearbeitet wird.
+                {
+                    labelStatus.Text = database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}' WHERE id_patient={3}",
+                    textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text, labelID2.Text));
+                    blockPatienElements();
+                }
+                else if (NeuerPatient == 1 && textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "") // Wenn ein neuer Patient angelegt wird
+                {
+                    //Add new patient
+                    database.Insert(String.Format("INSERT INTO patienten (sozialnr, name, vorname) VALUES({0}, '{1}', '{2}')",
+                    textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text));
 
-                //Add new patient
-                database.Insert(String.Format("INSERT INTO patienten (sozialnr, name, vorname) VALUES({0}, '{1}', '{2}')",
-                textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text));
+                    tablePatienten = database.Select(String.Format("SELECT id_patient FROM patienten WHERE sozialnr={0}",
+                        textBoxSozNr.Text));
 
-                tablePatienten = database.Select(String.Format("SELECT id_patient FROM patienten WHERE sozialnr={0}",
-                    textBoxSozNr.Text));
+                    labelID2.Text = tablePatienten.Rows[0][0].ToString();
+                    labelStatus.BackColor = Color.Transparent;
+                    MessageBox.Show("Der Patient wurde angelegt");
+                    blockPatienElements();
 
-                textBoxID.Text = tablePatienten.Rows[0][0].ToString();
-                labelStatus.BackColor = Color.Transparent;
-                MessageBox.Show("Der Patient wurde angelegt");
-                blockPatienElements();
-
-                unblockAppointment();
-            }
-            else {
-                labelStatus.Text = "Bitte pflegen Sie alle notwendiege Felder des Panietens!";
-                labelStatus.BackColor = Color.Red;
-            } 
+                    unblockAppointment();
+                }
+                else { // Wenn nicht alle Pflichtfelder ausgefüllt sind.
+                    labelStatus.Text = "Bitte pflegen Sie alle notwendiege Felder des Panietens!";
+                    labelStatus.BackColor = Color.Red;
+                } }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString() != "") //Hier wird geprüft, ob die angeklickte Spalte die Überschrift ist, oder keinen Inhalt hat.
             { 
             string ID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            textBoxID.Text = ID;
+            labelID2.Text = ID;
             textBoxSozNr.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             textBoxName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             textBoxVorname.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            textBoxGender.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                if(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString() == "m")
+                {
+                    radioButtonm.Checked = true;
+                    radioButtonw.Checked = false;
+                } else if(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString() == "w")
+                {
+                    radioButtonw.Checked = true;
+                    radioButtonm.Checked = false;
+                } else
+                {
+                    radioButtonw.Checked = false;
+                    radioButtonm.Checked = false;
+                }
             textBoxAdress.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
 
             DataTable tablePatientTermine = database.Select("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis   FROM termine WHERE id_patient=" + ID);
@@ -141,7 +153,7 @@ namespace Patientenverwaltung_v3._0
         private void tabPagePatient_Enter(object sender, EventArgs e)
         {
             blockAppointment();
-            if (textBoxID.Text != "")
+            if (labelID2.Text != "")
             {
                 btnEdit.Enabled = true;
                 btnDelete.Enabled = true;
@@ -160,8 +172,8 @@ namespace Patientenverwaltung_v3._0
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            database.Delete(String.Format("DELETE FROM termine WHERE id_patient={0}", textBoxID.Text));
-            labelStatus.Text = database.Delete(String.Format("DELETE FROM patienten WHERE id_patient={0}", textBoxID.Text));
+            database.Delete(String.Format("DELETE FROM termine WHERE id_patient={0}", labelID2.Text));
+            labelStatus.Text = database.Delete(String.Format("DELETE FROM patienten WHERE id_patient={0}", labelID2.Text));
 
             clearPatienElements();
         }
@@ -186,9 +198,9 @@ namespace Patientenverwaltung_v3._0
             else if (textBoxTo.Text != "")
             {
                 labelStatus.Text = database.Insert(String.Format("INSERT INTO termine (id_patient, datum, uhrzeit_von , uhrzeit_bis, betreff) VALUES({0}, '{1}', '{2}', '{3}', '{4}')",
-                textBoxID.Text, dateTimePickerAppointment.Value.ToString("yyyy/M/d"), textBoxFrom.Text, textBoxTo.Text, textBoxBetreff.Text));
+                labelID2.Text, dateTimePickerAppointment.Value.ToString("yyyy/M/d"), textBoxFrom.Text, textBoxTo.Text, textBoxBetreff.Text));
 
-                DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", textBoxID.Text));
+                DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", labelID2.Text));
                 dataGridViewPatientTermine.DataSource = tablePatientTermine;
 
                 clearTerminePanel();
@@ -202,11 +214,20 @@ namespace Patientenverwaltung_v3._0
 
         private void blockPatienElements() {
             pictureBox.Enabled = false;
-            textBoxID.ReadOnly = true;
+            //labelID2.ReadOnly = true;
             textBoxSozNr.ReadOnly = true;
             textBoxName.ReadOnly = true;
             textBoxVorname.ReadOnly = true;
-            textBoxGender.ReadOnly = true;
+            if (! radioButtonm.Checked)
+            {
+                radioButtonm.Enabled = false;
+            }
+            else { radioButtonm.Enabled = true; }
+            if (! radioButtonw.Checked)
+            {
+                radioButtonw.Enabled = false;
+            }
+            else { radioButtonw.Enabled = true; }
             textBoxAdress.ReadOnly = true;
             dateTimePickerBirthday.Enabled = false;
            
@@ -214,22 +235,24 @@ namespace Patientenverwaltung_v3._0
         private void unBlockPatienElements()
         {
             pictureBox.Enabled = true;
-            textBoxID.ReadOnly = false;
+            //labelID2.ReadOnly = false;
             textBoxSozNr.ReadOnly = false;
             textBoxName.ReadOnly = false;
             textBoxVorname.ReadOnly = false;
-            textBoxGender.ReadOnly = false;
+            radioButtonm.Enabled = true;
+            radioButtonw.Enabled = true;
             textBoxAdress.ReadOnly = false;
             dateTimePickerBirthday.Enabled = true;
         }
         private void clearPatienElements()
         {
             pictureBox.InitialImage = null;
-            textBoxID.Text = null;
+            labelID2.Text = null;
             textBoxSozNr.Text = null;
             textBoxName.Text = null;
             textBoxVorname.Text = null;
-            textBoxGender.Text = null;
+            radioButtonw.Checked = false;
+            radioButtonm.Checked = false;
             textBoxAdress.Text = null;
             textBoxBefund.Text = null;
             textBoxBetreff.Text = null;
@@ -238,29 +261,32 @@ namespace Patientenverwaltung_v3._0
 
         private void dataGridViewPatientTermine_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (textBoxID.Text != "")
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString() != "") //Hier wird geprüft, ob die angeklickte Spalte die Überschrift ist, oder keinen Inhalt hat.
             {
-                string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (labelID2.Text != "")
+                {
+                    string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                DataTable termine = database.Select(String.Format("SELECT betreff, befund FROM termine WHERE id_termin = {0} ", 
-                    id_termin));
+                    DataTable termine = database.Select(String.Format("SELECT betreff, befund FROM termine WHERE id_termin = {0} ",
+                        id_termin));
 
-                string betreff = termine.Rows[0][0].ToString();
-                textBoxBetreff.Text = betreff;
-                string befund = termine.Rows[0][1].ToString();
-                textBoxBefund.Text = befund;
+                    string betreff = termine.Rows[0][0].ToString();
+                    textBoxBetreff.Text = betreff;
+                    string befund = termine.Rows[0][1].ToString();
+                    textBoxBefund.Text = befund;
+                }
             }
         }
 
         private void btnDeleteDate_Click(object sender, EventArgs e)
         {
-            if (textBoxID.Text != "")
+            if (labelID2.Text != "")
             {
                 database.Delete(String.Format("DELETE FROM termine WHERE id_termin={0}",
                 selected_id_termin));
 
                 DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient={0}",
-                    textBoxID.Text));
+                    labelID2.Text));
 
                 dataGridViewPatientTermine.DataSource = tablePatientTermine;
             }
@@ -300,32 +326,48 @@ namespace Patientenverwaltung_v3._0
 
         private void dataGridViewTermine_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            tabControl.SelectedIndex = 2;
-            string strDatum = dataGridViewTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
-            strDatum = strDatum.Split(' ').FirstOrDefault();
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value != null) //Hier wird geprüft, ob die angeklickte Spalte die Überschrift ist, oder keinen Inhalt hat.
+            {
+                tabControl.SelectedIndex = 2;
+                string strDatum = dataGridViewTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
+                strDatum = strDatum.Split(' ').FirstOrDefault();
 
-            string datum = strDatum.Substring(6, 4) + "." +
-                strDatum.Substring(3, 2) + "." +
-                strDatum.Substring(0, 2);
+                string datum = strDatum.Substring(6, 4) + "." +
+                    strDatum.Substring(3, 2) + "." +
+                    strDatum.Substring(0, 2);
 
-            string von = dataGridViewTermine.Rows[e.RowIndex].Cells[1].Value.ToString();
-            string bis = dataGridViewTermine.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string von = dataGridViewTermine.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string bis = dataGridViewTermine.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-            tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE id_patient = " +
-                "(SELECT id_patient FROM termine WHERE datum='{0}' AND uhrzeit_von='{1}' AND uhrzeit_bis='{2}');", datum, von, bis));
+                tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE id_patient = " +
+                    "(SELECT id_patient FROM termine WHERE datum='{0}' AND uhrzeit_von='{1}' AND uhrzeit_bis='{2}');", datum, von, bis));
 
-            string patientID = tablePatienten.Rows[0][0].ToString();
-            textBoxID.Text = patientID;
-            textBoxSozNr.Text = tablePatienten.Rows[0][1].ToString();
-            textBoxName.Text = tablePatienten.Rows[0][2].ToString();
-            textBoxVorname.Text = tablePatienten.Rows[0][3].ToString();
-            textBoxGender.Text = tablePatienten.Rows[0][4].ToString();
-            textBoxAdress.Text = tablePatienten.Rows[0][5].ToString();
+                string patientID = tablePatienten.Rows[0][0].ToString();
+                labelID2.Text = patientID;
+                textBoxSozNr.Text = tablePatienten.Rows[0][1].ToString();
+                textBoxName.Text = tablePatienten.Rows[0][2].ToString();
+                textBoxVorname.Text = tablePatienten.Rows[0][3].ToString();
+                if (tablePatienten.Rows[0][4].ToString() == "m")
+                {
+                    radioButtonm.Checked = true;
+                    radioButtonw.Checked = false;
+                }
+                else if (tablePatienten.Rows[0][4].ToString() == "w")
+                {
+                    radioButtonw.Checked = true;
+                    radioButtonm.Checked = false;
+                }
+                else
+                {
+                    radioButtonw.Checked = false;
+                    radioButtonm.Checked = false;
+                }
+                textBoxAdress.Text = tablePatienten.Rows[0][5].ToString();
 
-            tablePatienten = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient = {0}",
-                patientID));
-            dataGridViewPatientTermine.DataSource = tablePatienten;
+                tablePatienten = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient = {0}", patientID));
+                dataGridViewPatientTermine.DataSource = tablePatienten;
 
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -348,47 +390,30 @@ namespace Patientenverwaltung_v3._0
             textBoxBefund.Clear();
         }
 
-        private void dataGridViewPatientTermine_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            if (textBoxID.Text != "")
-            {
-                string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                DataTable termine = database.Select(String.Format("SELECT betreff, befund, uhrzeit_von, uhrzeit_bis, datum FROM termine WHERE id_termin = {0} ",
-                    id_termin));
-
-                textBoxFrom.Text = termine.Rows[0][2].ToString();
-                textBoxTo.Text = termine.Rows[0][3].ToString();
-
-                dateTimePickerAppointment.Text = termine.Rows[0][4].ToString();
-
-                string betreff = termine.Rows[0][0].ToString();
-                textBoxBetreff.Text = betreff;
-                string befund = termine.Rows[0][1].ToString();
-                textBoxBefund.Text = befund;
-                 
-            }
-        }
 
         private void dataGridViewPatientTermine_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (textBoxID.Text != "")
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString() != "") //Hier wird geprüft, ob die angeklickte Spalte die Überschrift ist, oder keinen Inhalt hat.
             {
-                string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
-                selected_id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
-                DataTable termine = database.Select(String.Format("SELECT betreff, befund, uhrzeit_von, uhrzeit_bis, datum FROM termine WHERE id_termin = {0} ",
-                    id_termin));
+                if (labelID2.Text != "")
+                {
+                    string id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    selected_id_termin = dataGridViewPatientTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    DataTable termine = database.Select(String.Format("SELECT betreff, befund, uhrzeit_von, uhrzeit_bis, datum FROM termine WHERE id_termin = {0} ",
+                        id_termin));
 
-                textBoxFrom.Text = termine.Rows[0][2].ToString();
-                textBoxTo.Text = termine.Rows[0][3].ToString();
+                    textBoxFrom.Text = termine.Rows[0][2].ToString();
+                    textBoxTo.Text = termine.Rows[0][3].ToString();
 
-                dateTimePickerAppointment.Text = termine.Rows[0][4].ToString();
+                    dateTimePickerAppointment.Text = termine.Rows[0][4].ToString();
 
-                string betreff = termine.Rows[0][0].ToString();
-                textBoxBetreff.Text = betreff;
-                string befund = termine.Rows[0][1].ToString();
-                textBoxBefund.Text = befund;
+                    string betreff = termine.Rows[0][0].ToString();
+                    textBoxBetreff.Text = betreff;
+                    string befund = termine.Rows[0][1].ToString();
+                    textBoxBefund.Text = befund;
 
+                }
             }
         }
     }
