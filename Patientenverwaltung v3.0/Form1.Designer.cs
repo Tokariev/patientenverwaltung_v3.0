@@ -278,7 +278,7 @@ namespace Patientenverwaltung_v3._0
             this.buttonCloseDate.UseVisualStyleBackColor = true;
             this.buttonCloseDate.Visible = false;
             this.buttonCloseDate.Click += new System.EventHandler(this.buttonCloseDate_Click);
-            // 
+            //  
             // label12
             // 
             this.label12.AutoSize = true;
