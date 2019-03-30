@@ -410,9 +410,14 @@ namespace Patientenverwaltung_v3._0
                 }
                 textBoxAdress.Text = tablePatienten.Rows[0][5].ToString();
 
+                textBoxBefund.Clear();
+                textBoxBetreff.Clear();
+                
+
                 tablePatienten = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient = {0}", patientID));
                 dataGridViewPatientTermine.DataSource = tablePatienten;
 
+                dataGridViewPatientTermine.ClearSelection();
             }
         }
 
@@ -503,6 +508,7 @@ namespace Patientenverwaltung_v3._0
             dataGridViewPatientTermine.Enabled = true;
             buttonNeuTermin.Enabled = true;
             clearTerminePanel();
+            dataGridViewPatientTermine.ClearSelection();
         }
 
         public void setTerminElementsUnvisible()

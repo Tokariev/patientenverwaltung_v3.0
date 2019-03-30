@@ -159,11 +159,14 @@ namespace Patientenverwaltung_v3._0
             // buttonAddPatient
             // 
             this.buttonAddPatient.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddPatient.Location = new System.Drawing.Point(6, 445);
+            this.buttonAddPatient.Image = ((System.Drawing.Image)(resources.GetObject("buttonAddPatient.Image")));
+            this.buttonAddPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonAddPatient.Location = new System.Drawing.Point(6, 472);
             this.buttonAddPatient.Name = "buttonAddPatient";
-            this.buttonAddPatient.Size = new System.Drawing.Size(83, 81);
+            this.buttonAddPatient.Size = new System.Drawing.Size(169, 54);
             this.buttonAddPatient.TabIndex = 1;
-            this.buttonAddPatient.Text = "+";
+            this.buttonAddPatient.Text = "Patient anlegen";
+            this.buttonAddPatient.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonAddPatient.UseVisualStyleBackColor = true;
             this.buttonAddPatient.Click += new System.EventHandler(this.buttonAddPatient_Click);
             // 
@@ -177,7 +180,7 @@ namespace Patientenverwaltung_v3._0
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(902, 347);
+            this.dataGridView1.Size = new System.Drawing.Size(902, 374);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
