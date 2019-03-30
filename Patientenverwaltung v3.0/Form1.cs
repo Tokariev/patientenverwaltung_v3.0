@@ -41,7 +41,7 @@ namespace Patientenverwaltung_v3._0
         private void Form1_Load(object sender, EventArgs e)
         {
            // tablePatienten = database.Select("SELECT * FROM patienten");
-            tableTermine = database.Select("SELECT datum, uhrzeit_von, uhrzeit_bis FROM termine");
+            tableTermine = database.Select("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine");
             dataGridView1.DataSource = tablePatienten;
             dataGridViewTermine.DataSource = tableTermine;
         }
@@ -55,17 +55,27 @@ namespace Patientenverwaltung_v3._0
         private void buttonSpeichern_Click(object sender, EventArgs e)
         {
             if (textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "") {   //Pflichtfelder
+
+                char geschlecht;
+                if (radioButtonM.Checked)
+                {
+                    geschlecht = 'm';
+                }
+                else {
+                    geschlecht = 'w';
+                }
+
                 if (NeuerPatient == 0) // Wenn ein bestehender Patient bearbeitet wird.
                 {
-                    labelStatus.Text = database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}' WHERE id_patient={3}",
-                    textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text, labelID2.Text));
+                    labelStatus.Text = database.Update(String.Format("UPDATE patienten SET sozialnr={0}, name='{1}', vorname='{2}', geschlecht='{3}', adresse='{4}', geburtsdatum='{5}' WHERE id_patient={6}",
+                    textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text, geschlecht, textBoxAdress.Text, dateTimePickerBirthday.Value.ToString("yyyy/M/d"), labelID2.Text));
                     blockPatienElements();
                 }
                 else if (NeuerPatient == 1 && textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "") // Wenn ein neuer Patient angelegt wird
                 {
                     //Add new patient
-                    database.Insert(String.Format("INSERT INTO patienten (sozialnr, name, vorname) VALUES({0}, '{1}', '{2}')",
-                    textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text));
+                    database.Insert(String.Format("INSERT INTO patienten (sozialnr, name, vorname, geschlecht, adresse, geburtsdatum) VALUES({0}, '{1}', '{2}','{3}','{4}','{5}')",
+                    textBoxSozNr.Text, textBoxName.Text, textBoxVorname.Text, geschlecht, textBoxAdress.Text, dateTimePickerBirthday.Value.ToString("yyyy/M/d")));
 
                     tablePatienten = database.Select(String.Format("SELECT id_patient FROM patienten WHERE sozialnr={0}",
                         textBoxSozNr.Text));
@@ -93,16 +103,16 @@ namespace Patientenverwaltung_v3._0
             textBoxVorname.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                 if(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString() == "m")
                 {
-                    radioButtonm.Checked = true;
-                    radioButtonw.Checked = false;
+                    radioButtonM.Checked = true;
+                    radioButtonW.Checked = false;
                 } else if(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString() == "w")
                 {
-                    radioButtonw.Checked = true;
-                    radioButtonm.Checked = false;
+                    radioButtonW.Checked = true;
+                    radioButtonM.Checked = false;
                 } else
                 {
-                    radioButtonw.Checked = false;
-                    radioButtonm.Checked = false;
+                    radioButtonW.Checked = false;
+                    radioButtonM.Checked = false;
                 }
             textBoxAdress.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
 
@@ -174,6 +184,7 @@ namespace Patientenverwaltung_v3._0
         private void btnEdit_Click(object sender, EventArgs e)
         {
             unBlockPatienElements();
+            NeuerPatient = 0;
         }
 
         private void tabPagePatient_Enter(object sender, EventArgs e)
@@ -232,7 +243,10 @@ namespace Patientenverwaltung_v3._0
             }
             else { //Update
                 labelStatus.Text = database.Update(String.Format("UPDATE termine SET datum='{0}', uhrzeit_von='{1}', uhrzeit_bis='{2}', betreff='{3}', befund='{4}' WHERE id_termin={5}",
-                    dateTimePickerAppointment.Value.ToString("yyyy/M/d"), TimePickerFrom.Text, TimePickerTo.Text, textBoxBetreff.Text, textBoxBefund.Text, selected_id_termin));               
+                    dateTimePickerAppointment.Value.ToString("yyyy/M/d"), TimePickerFrom.Text, TimePickerTo.Text, textBoxBetreff.Text, textBoxBefund.Text, selected_id_termin));
+
+                DataTable tablePatientTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE id_patient= {0}", labelID2.Text));
+                dataGridViewPatientTermine.DataSource = tablePatientTermine;
             }
             clearTerminePanel();
             setTerminElementsUnvisible();
@@ -250,16 +264,16 @@ namespace Patientenverwaltung_v3._0
             textBoxSozNr.ReadOnly = true;
             textBoxName.ReadOnly = true;
             textBoxVorname.ReadOnly = true;
-            if (! radioButtonm.Checked)
+            if (! radioButtonM.Checked)
             {
-                radioButtonm.Enabled = false;
+                radioButtonM.Enabled = false;
             }
-            else { radioButtonm.Enabled = true; }
-            if (! radioButtonw.Checked)
+            else { radioButtonM.Enabled = true; }
+            if (! radioButtonW.Checked)
             {
-                radioButtonw.Enabled = false;
+                radioButtonW.Enabled = false;
             }
-            else { radioButtonw.Enabled = true; }
+            else { radioButtonW.Enabled = true; }
             textBoxAdress.ReadOnly = true;
             dateTimePickerBirthday.Enabled = false;
            
@@ -271,8 +285,8 @@ namespace Patientenverwaltung_v3._0
             textBoxSozNr.ReadOnly = false;
             textBoxName.ReadOnly = false;
             textBoxVorname.ReadOnly = false;
-            radioButtonm.Enabled = true;
-            radioButtonw.Enabled = true;
+            radioButtonM.Enabled = true;
+            radioButtonW.Enabled = true;
             textBoxAdress.ReadOnly = false;
             dateTimePickerBirthday.Enabled = true;
         }
@@ -283,8 +297,8 @@ namespace Patientenverwaltung_v3._0
             textBoxSozNr.Text = null;
             textBoxName.Text = null;
             textBoxVorname.Text = null;
-            radioButtonw.Checked = false;
-            radioButtonm.Checked = false;
+            radioButtonW.Checked = false;
+            radioButtonM.Checked = false;
             textBoxAdress.Text = null;
             textBoxBefund.Text = null;
             textBoxBetreff.Text = null;
@@ -369,18 +383,10 @@ namespace Patientenverwaltung_v3._0
             if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value != null) //Hier wird geprüft, ob die angeklickte Spalte die Überschrift ist, oder keinen Inhalt hat.
             {
                 tabControl.SelectedIndex = 2;
-                string strDatum = dataGridViewTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
-                strDatum = strDatum.Split(' ').FirstOrDefault();
-
-                string datum = strDatum.Substring(6, 4) + "." +
-                    strDatum.Substring(3, 2) + "." +
-                    strDatum.Substring(0, 2);
-
-                string von = dataGridViewTermine.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string bis = dataGridViewTermine.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string id_termin = dataGridViewTermine.Rows[e.RowIndex].Cells[0].Value.ToString();
 
                 tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE id_patient = " +
-                    "(SELECT id_patient FROM termine WHERE datum='{0}' AND uhrzeit_von='{1}' AND uhrzeit_bis='{2}');", datum, von, bis));
+                    "(SELECT id_patient FROM termine WHERE id_termin='{0}');", id_termin));
 
                 string patientID = tablePatienten.Rows[0][0].ToString();
                 labelID2.Text = patientID;
@@ -389,18 +395,18 @@ namespace Patientenverwaltung_v3._0
                 textBoxVorname.Text = tablePatienten.Rows[0][3].ToString();
                 if (tablePatienten.Rows[0][4].ToString() == "m")
                 {
-                    radioButtonm.Checked = true;
-                    radioButtonw.Checked = false;
+                    radioButtonM.Checked = true;
+                    radioButtonW.Checked = false;
                 }
                 else if (tablePatienten.Rows[0][4].ToString() == "w")
                 {
-                    radioButtonw.Checked = true;
-                    radioButtonm.Checked = false;
+                    radioButtonW.Checked = true;
+                    radioButtonM.Checked = false;
                 }
                 else
                 {
-                    radioButtonw.Checked = false;
-                    radioButtonm.Checked = false;
+                    radioButtonW.Checked = false;
+                    radioButtonM.Checked = false;
                 }
                 textBoxAdress.Text = tablePatienten.Rows[0][5].ToString();
 

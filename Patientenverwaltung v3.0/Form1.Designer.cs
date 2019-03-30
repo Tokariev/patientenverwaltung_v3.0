@@ -53,8 +53,8 @@ namespace Patientenverwaltung_v3._0
             this.textBoxVorname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButtonw = new System.Windows.Forms.RadioButton();
-            this.radioButtonm = new System.Windows.Forms.RadioButton();
+            this.radioButtonW = new System.Windows.Forms.RadioButton();
+            this.radioButtonM = new System.Windows.Forms.RadioButton();
             this.textBoxSozNr = new System.Windows.Forms.TextBox();
             this.labelID2 = new System.Windows.Forms.Label();
             this.labelId = new System.Windows.Forms.Label();
@@ -360,34 +360,33 @@ namespace Patientenverwaltung_v3._0
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.radioButtonw);
-            this.panel1.Controls.Add(this.radioButtonm);
+            this.panel1.Controls.Add(this.radioButtonW);
+            this.panel1.Controls.Add(this.radioButtonM);
             this.panel1.Location = new System.Drawing.Point(132, 227);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(230, 43);
             this.panel1.TabIndex = 38;
             // 
-            // radioButtonw
+            // radioButtonW
             // 
-            this.radioButtonw.AutoSize = true;
-            this.radioButtonw.Location = new System.Drawing.Point(137, 9);
-            this.radioButtonw.Name = "radioButtonw";
-            this.radioButtonw.Size = new System.Drawing.Size(90, 24);
-            this.radioButtonw.TabIndex = 1;
-            this.radioButtonw.TabStop = true;
-            this.radioButtonw.Text = "Weiblich";
-            this.radioButtonw.UseVisualStyleBackColor = true;
+            this.radioButtonW.AutoSize = true;
+            this.radioButtonW.Location = new System.Drawing.Point(137, 9);
+            this.radioButtonW.Name = "radioButtonW";
+            this.radioButtonW.Size = new System.Drawing.Size(90, 24);
+            this.radioButtonW.TabIndex = 1;
+            this.radioButtonW.TabStop = true;
+            this.radioButtonW.Text = "Weiblich";
+            this.radioButtonW.UseVisualStyleBackColor = true;
             // 
-            // radioButtonm
+            // radioButtonM
             // 
-            this.radioButtonm.AutoSize = true;
-            this.radioButtonm.Location = new System.Drawing.Point(3, 9);
-            this.radioButtonm.Name = "radioButtonm";
-            this.radioButtonm.Size = new System.Drawing.Size(95, 24);
-            this.radioButtonm.TabIndex = 0;
-            this.radioButtonm.TabStop = true;
-            this.radioButtonm.Text = "Männlich";
-            this.radioButtonm.UseVisualStyleBackColor = true;
+            this.radioButtonM.AutoSize = true;
+            this.radioButtonM.Location = new System.Drawing.Point(3, 9);
+            this.radioButtonM.Name = "radioButtonM";
+            this.radioButtonM.Size = new System.Drawing.Size(95, 24);
+            this.radioButtonM.TabIndex = 0;
+            this.radioButtonM.Text = "Männlich";
+            this.radioButtonM.UseVisualStyleBackColor = true;
             // 
             // textBoxSozNr
             // 
@@ -731,8 +730,8 @@ namespace Patientenverwaltung_v3._0
         private Label label13;
         private Label labelID2;
         private Panel panel1;
-        private RadioButton radioButtonw;
-        private RadioButton radioButtonm;
+        private RadioButton radioButtonW;
+        private RadioButton radioButtonM;
         private ComboBox comboBox1;
         private DateTimePicker TimePickerFrom;
         private DateTimePicker TimePickerTo;
