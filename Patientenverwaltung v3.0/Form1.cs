@@ -366,14 +366,14 @@ namespace Patientenverwaltung_v3._0
 
         private void dateTimePickerVon_ValueChanged(object sender, EventArgs e)
         {
-            tableTermine = database.Select(String.Format("SELECT datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von", 
+            tableTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von", 
                 dateTimePickerVon.Value.ToString("yyyy/M/d"), dateTimePickerBis.Value.ToString("yyyy/M/d")));
             dataGridViewTermine.DataSource = tableTermine;
         }
 
         private void dateTimePickerBis_ValueChanged(object sender, EventArgs e)
         {
-            tableTermine = database.Select(String.Format("SELECT datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von",
+            tableTermine = database.Select(String.Format("SELECT id_termin, datum, uhrzeit_von, uhrzeit_bis FROM termine WHERE datum BETWEEN '{0}' AND '{1}' ORDER BY datum, uhrzeit_von",
                 dateTimePickerVon.Value.ToString("yyyy/M/d"), dateTimePickerBis.Value.ToString("yyyy/M/d")));
             dataGridViewTermine.DataSource = tableTermine;
         }
