@@ -56,14 +56,7 @@ namespace Patientenverwaltung_v3._0
         {
             if (textBoxSozNr.Text != "" && textBoxName.Text != "" && textBoxVorname.Text != "") {   //Pflichtfelder
 
-                char geschlecht;
-                if (radioButtonM.Checked)
-                {
-                    geschlecht = 'm';
-                }
-                else {
-                    geschlecht = 'w';
-                }
+                char geschlecht = radioButtonM.Checked ? 'm' : 'w';
 
                 if (NeuerPatient == 0) // Wenn ein bestehender Patient bearbeitet wird.
                 {
