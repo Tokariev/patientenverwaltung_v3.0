@@ -164,10 +164,6 @@ namespace Patientenverwaltung_v3._0
                         dataGridView1.DataSource = tablePatienten;
                         break;
                     case 3:
-                        tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE geburtsdatum LIKE '{0}'", textBoxSuche.Text));
-                        dataGridView1.DataSource = tablePatienten;
-                        break;
-                    case 4:
                         tablePatienten = database.Select(String.Format("SELECT * FROM patienten WHERE sozialnr LIKE '{0}'", textBoxSuche.Text));
                         dataGridView1.DataSource = tablePatienten;
                         break;

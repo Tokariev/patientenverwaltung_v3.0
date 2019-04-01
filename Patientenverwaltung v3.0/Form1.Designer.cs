@@ -83,6 +83,8 @@ namespace Patientenverwaltung_v3._0
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewPatientTermine = new System.Windows.Forms.DataGridView();
             this.labelStatus = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabSuchen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -101,7 +103,7 @@ namespace Patientenverwaltung_v3._0
             this.tabControl.Controls.Add(this.tabTermine);
             this.tabControl.Controls.Add(this.tabPagePatient);
             this.tabControl.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabControl.Location = new System.Drawing.Point(41, 26);
+            this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -132,9 +134,8 @@ namespace Patientenverwaltung_v3._0
             "Name",
             "Vorname",
             "Adresse",
-            "Geburtsdatum",
             "Sozialnr"});
-            this.comboBox1.Location = new System.Drawing.Point(628, 60);
+            this.comboBox1.Location = new System.Drawing.Point(688, 15);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(94, 28);
             this.comboBox1.TabIndex = 10;
@@ -142,7 +143,7 @@ namespace Patientenverwaltung_v3._0
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(522, 63);
+            this.label4.Location = new System.Drawing.Point(582, 18);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 3;
@@ -150,7 +151,7 @@ namespace Patientenverwaltung_v3._0
             // 
             // textBoxSuche
             // 
-            this.textBoxSuche.Location = new System.Drawing.Point(728, 60);
+            this.textBoxSuche.Location = new System.Drawing.Point(788, 15);
             this.textBoxSuche.Name = "textBoxSuche";
             this.textBoxSuche.Size = new System.Drawing.Size(180, 26);
             this.textBoxSuche.TabIndex = 2;
@@ -161,9 +162,9 @@ namespace Patientenverwaltung_v3._0
             this.buttonAddPatient.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAddPatient.Image = ((System.Drawing.Image)(resources.GetObject("buttonAddPatient.Image")));
             this.buttonAddPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAddPatient.Location = new System.Drawing.Point(6, 472);
+            this.buttonAddPatient.Location = new System.Drawing.Point(6, 6);
             this.buttonAddPatient.Name = "buttonAddPatient";
-            this.buttonAddPatient.Size = new System.Drawing.Size(169, 54);
+            this.buttonAddPatient.Size = new System.Drawing.Size(169, 45);
             this.buttonAddPatient.TabIndex = 1;
             this.buttonAddPatient.Text = "Patient anlegen";
             this.buttonAddPatient.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -175,12 +176,12 @@ namespace Patientenverwaltung_v3._0
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 92);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 57);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(902, 374);
+            this.dataGridView1.Size = new System.Drawing.Size(962, 478);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -201,27 +202,27 @@ namespace Patientenverwaltung_v3._0
             // 
             // dateTimePickerVon
             // 
-            this.dateTimePickerVon.Location = new System.Drawing.Point(440, 69);
+            this.dateTimePickerVon.Location = new System.Drawing.Point(419, 9);
             this.dateTimePickerVon.Name = "dateTimePickerVon";
-            this.dateTimePickerVon.Size = new System.Drawing.Size(200, 26);
+            this.dateTimePickerVon.Size = new System.Drawing.Size(273, 26);
             this.dateTimePickerVon.TabIndex = 3;
             this.dateTimePickerVon.ValueChanged += new System.EventHandler(this.dateTimePickerVon_ValueChanged);
             // 
             // dateTimePickerBis
             // 
-            this.dateTimePickerBis.Location = new System.Drawing.Point(708, 69);
+            this.dateTimePickerBis.Location = new System.Drawing.Point(698, 9);
             this.dateTimePickerBis.Name = "dateTimePickerBis";
-            this.dateTimePickerBis.Size = new System.Drawing.Size(200, 26);
+            this.dateTimePickerBis.Size = new System.Drawing.Size(270, 26);
             this.dateTimePickerBis.TabIndex = 2;
             this.dateTimePickerBis.ValueChanged += new System.EventHandler(this.dateTimePickerBis_ValueChanged);
             // 
             // buttonHeute
             // 
-            this.buttonHeute.Location = new System.Drawing.Point(798, 458);
+            this.buttonHeute.Location = new System.Drawing.Point(6, 6);
             this.buttonHeute.Name = "buttonHeute";
-            this.buttonHeute.Size = new System.Drawing.Size(110, 68);
+            this.buttonHeute.Size = new System.Drawing.Size(219, 29);
             this.buttonHeute.TabIndex = 1;
-            this.buttonHeute.Text = "Heute";
+            this.buttonHeute.Text = "Heutige Termine anzeigen";
             this.buttonHeute.UseVisualStyleBackColor = true;
             this.buttonHeute.Click += new System.EventHandler(this.buttonHeute_Click);
             // 
@@ -230,18 +231,20 @@ namespace Patientenverwaltung_v3._0
             this.dataGridViewTermine.AllowUserToAddRows = false;
             this.dataGridViewTermine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewTermine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTermine.Location = new System.Drawing.Point(3, 101);
+            this.dataGridViewTermine.Location = new System.Drawing.Point(6, 41);
             this.dataGridViewTermine.MultiSelect = false;
             this.dataGridViewTermine.Name = "dataGridViewTermine";
             this.dataGridViewTermine.ReadOnly = true;
             this.dataGridViewTermine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTermine.Size = new System.Drawing.Size(911, 351);
+            this.dataGridViewTermine.Size = new System.Drawing.Size(962, 494);
             this.dataGridViewTermine.TabIndex = 0;
             this.dataGridViewTermine.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTermine_CellDoubleClick);
             // 
             // tabPagePatient
             // 
             this.tabPagePatient.BackColor = System.Drawing.Color.Transparent;
+            this.tabPagePatient.Controls.Add(this.label15);
+            this.tabPagePatient.Controls.Add(this.label14);
             this.tabPagePatient.Controls.Add(this.panelLinks);
             this.tabPagePatient.Controls.Add(this.buttonCloseDate);
             this.tabPagePatient.Controls.Add(this.label12);
@@ -290,9 +293,9 @@ namespace Patientenverwaltung_v3._0
             this.panelLinks.Controls.Add(this.label9);
             this.panelLinks.Controls.Add(this.label11);
             this.panelLinks.Controls.Add(this.label10);
-            this.panelLinks.Location = new System.Drawing.Point(6, 3);
+            this.panelLinks.Location = new System.Drawing.Point(6, 6);
             this.panelLinks.Name = "panelLinks";
-            this.panelLinks.Size = new System.Drawing.Size(364, 504);
+            this.panelLinks.Size = new System.Drawing.Size(375, 529);
             this.panelLinks.TabIndex = 45;
             // 
             // pictureBox
@@ -300,7 +303,7 @@ namespace Patientenverwaltung_v3._0
             this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox.Image = global::Patientenverwaltung_v3._0.Properties.Resources.patient_2;
-            this.pictureBox.Location = new System.Drawing.Point(225, 23);
+            this.pictureBox.Location = new System.Drawing.Point(226, 12);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(137, 122);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -311,7 +314,7 @@ namespace Patientenverwaltung_v3._0
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 157);
+            this.label1.Location = new System.Drawing.Point(65, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 0;
@@ -320,7 +323,7 @@ namespace Patientenverwaltung_v3._0
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 194);
+            this.label2.Location = new System.Drawing.Point(41, 175);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 20);
             this.label2.TabIndex = 1;
@@ -328,7 +331,7 @@ namespace Patientenverwaltung_v3._0
             // 
             // buttonSpeichern
             // 
-            this.buttonSpeichern.Location = new System.Drawing.Point(250, 446);
+            this.buttonSpeichern.Location = new System.Drawing.Point(251, 315);
             this.buttonSpeichern.Name = "buttonSpeichern";
             this.buttonSpeichern.Size = new System.Drawing.Size(112, 58);
             this.buttonSpeichern.TabIndex = 2;
@@ -338,24 +341,24 @@ namespace Patientenverwaltung_v3._0
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(130, 156);
+            this.textBoxName.Location = new System.Drawing.Point(133, 140);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.ReadOnly = true;
-            this.textBoxName.Size = new System.Drawing.Size(232, 26);
+            this.textBoxName.Size = new System.Drawing.Size(230, 26);
             this.textBoxName.TabIndex = 3;
             // 
             // textBoxVorname
             // 
-            this.textBoxVorname.Location = new System.Drawing.Point(130, 194);
+            this.textBoxVorname.Location = new System.Drawing.Point(133, 172);
             this.textBoxVorname.Name = "textBoxVorname";
             this.textBoxVorname.ReadOnly = true;
-            this.textBoxVorname.Size = new System.Drawing.Size(232, 26);
+            this.textBoxVorname.Size = new System.Drawing.Size(230, 26);
             this.textBoxVorname.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 55);
+            this.label3.Location = new System.Drawing.Point(70, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 20);
             this.label3.TabIndex = 6;
@@ -365,15 +368,15 @@ namespace Patientenverwaltung_v3._0
             // 
             this.panel1.Controls.Add(this.radioButtonW);
             this.panel1.Controls.Add(this.radioButtonM);
-            this.panel1.Location = new System.Drawing.Point(132, 227);
+            this.panel1.Location = new System.Drawing.Point(133, 204);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(230, 43);
+            this.panel1.Size = new System.Drawing.Size(230, 28);
             this.panel1.TabIndex = 38;
             // 
             // radioButtonW
             // 
             this.radioButtonW.AutoSize = true;
-            this.radioButtonW.Location = new System.Drawing.Point(137, 9);
+            this.radioButtonW.Location = new System.Drawing.Point(143, 2);
             this.radioButtonW.Name = "radioButtonW";
             this.radioButtonW.Size = new System.Drawing.Size(90, 24);
             this.radioButtonW.TabIndex = 1;
@@ -384,7 +387,7 @@ namespace Patientenverwaltung_v3._0
             // radioButtonM
             // 
             this.radioButtonM.AutoSize = true;
-            this.radioButtonM.Location = new System.Drawing.Point(3, 9);
+            this.radioButtonM.Location = new System.Drawing.Point(3, 2);
             this.radioButtonM.Name = "radioButtonM";
             this.radioButtonM.Size = new System.Drawing.Size(95, 24);
             this.radioButtonM.TabIndex = 0;
@@ -393,7 +396,7 @@ namespace Patientenverwaltung_v3._0
             // 
             // textBoxSozNr
             // 
-            this.textBoxSozNr.Location = new System.Drawing.Point(130, 55);
+            this.textBoxSozNr.Location = new System.Drawing.Point(133, 38);
             this.textBoxSozNr.Name = "textBoxSozNr";
             this.textBoxSozNr.ReadOnly = true;
             this.textBoxSozNr.Size = new System.Drawing.Size(89, 26);
@@ -402,7 +405,7 @@ namespace Patientenverwaltung_v3._0
             // labelID2
             // 
             this.labelID2.AutoSize = true;
-            this.labelID2.Location = new System.Drawing.Point(128, 24);
+            this.labelID2.Location = new System.Drawing.Point(129, 12);
             this.labelID2.Name = "labelID2";
             this.labelID2.Size = new System.Drawing.Size(69, 20);
             this.labelID2.TabIndex = 37;
@@ -411,7 +414,7 @@ namespace Patientenverwaltung_v3._0
             // labelId
             // 
             this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(62, 23);
+            this.labelId.Location = new System.Drawing.Point(93, 12);
             this.labelId.Name = "labelId";
             this.labelId.Size = new System.Drawing.Size(33, 20);
             this.labelId.TabIndex = 8;
@@ -420,7 +423,7 @@ namespace Patientenverwaltung_v3._0
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(14, 446);
+            this.btnEdit.Location = new System.Drawing.Point(15, 315);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(112, 58);
             this.btnEdit.TabIndex = 13;
@@ -430,15 +433,16 @@ namespace Patientenverwaltung_v3._0
             // 
             // dateTimePickerBirthday
             // 
-            this.dateTimePickerBirthday.Location = new System.Drawing.Point(132, 318);
+            this.dateTimePickerBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(133, 268);
             this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
-            this.dateTimePickerBirthday.Size = new System.Drawing.Size(196, 26);
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(230, 26);
             this.dateTimePickerBirthday.TabIndex = 33;
             // 
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(132, 446);
+            this.btnDelete.Location = new System.Drawing.Point(133, 315);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(112, 58);
             this.btnDelete.TabIndex = 14;
@@ -448,16 +452,16 @@ namespace Patientenverwaltung_v3._0
             // 
             // textBoxAdress
             // 
-            this.textBoxAdress.Location = new System.Drawing.Point(130, 276);
+            this.textBoxAdress.Location = new System.Drawing.Point(133, 234);
             this.textBoxAdress.Name = "textBoxAdress";
             this.textBoxAdress.ReadOnly = true;
-            this.textBoxAdress.Size = new System.Drawing.Size(232, 26);
+            this.textBoxAdress.Size = new System.Drawing.Size(230, 26);
             this.textBoxAdress.TabIndex = 31;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 236);
+            this.label9.Location = new System.Drawing.Point(24, 205);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(102, 20);
             this.label9.TabIndex = 27;
@@ -466,7 +470,7 @@ namespace Patientenverwaltung_v3._0
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 318);
+            this.label11.Location = new System.Drawing.Point(4, 273);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(122, 20);
             this.label11.TabIndex = 29;
@@ -475,7 +479,7 @@ namespace Patientenverwaltung_v3._0
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 279);
+            this.label10.Location = new System.Drawing.Point(51, 237);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 20);
             this.label10.TabIndex = 28;
@@ -484,10 +488,12 @@ namespace Patientenverwaltung_v3._0
             // buttonCloseDate
             // 
             this.buttonCloseDate.Image = ((System.Drawing.Image)(resources.GetObject("buttonCloseDate.Image")));
-            this.buttonCloseDate.Location = new System.Drawing.Point(919, 210);
+            this.buttonCloseDate.Location = new System.Drawing.Point(717, 490);
             this.buttonCloseDate.Name = "buttonCloseDate";
-            this.buttonCloseDate.Size = new System.Drawing.Size(45, 45);
+            this.buttonCloseDate.Size = new System.Drawing.Size(248, 45);
             this.buttonCloseDate.TabIndex = 44;
+            this.buttonCloseDate.Text = "Abbrechen";
+            this.buttonCloseDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonCloseDate.UseVisualStyleBackColor = true;
             this.buttonCloseDate.Visible = false;
             this.buttonCloseDate.Click += new System.EventHandler(this.buttonCloseDate_Click);
@@ -495,7 +501,7 @@ namespace Patientenverwaltung_v3._0
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(399, 262);
+            this.label12.Location = new System.Drawing.Point(400, 244);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 20);
             this.label12.TabIndex = 43;
@@ -504,7 +510,7 @@ namespace Patientenverwaltung_v3._0
             // buttonNeuTermin
             // 
             this.buttonNeuTermin.Image = ((System.Drawing.Image)(resources.GetObject("buttonNeuTermin.Image")));
-            this.buttonNeuTermin.Location = new System.Drawing.Point(411, 44);
+            this.buttonNeuTermin.Location = new System.Drawing.Point(412, 30);
             this.buttonNeuTermin.Name = "buttonNeuTermin";
             this.buttonNeuTermin.Size = new System.Drawing.Size(49, 49);
             this.buttonNeuTermin.TabIndex = 42;
@@ -514,7 +520,7 @@ namespace Patientenverwaltung_v3._0
             // buttonTermineAendern
             // 
             this.buttonTermineAendern.Image = ((System.Drawing.Image)(resources.GetObject("buttonTermineAendern.Image")));
-            this.buttonTermineAendern.Location = new System.Drawing.Point(411, 99);
+            this.buttonTermineAendern.Location = new System.Drawing.Point(412, 91);
             this.buttonTermineAendern.Name = "buttonTermineAendern";
             this.buttonTermineAendern.Size = new System.Drawing.Size(49, 49);
             this.buttonTermineAendern.TabIndex = 41;
@@ -523,28 +529,32 @@ namespace Patientenverwaltung_v3._0
             // 
             // TimePickerTo
             // 
-            this.TimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.TimePickerTo.Location = new System.Drawing.Point(768, 219);
+            this.TimePickerTo.CustomFormat = "HH:mm";
+            this.TimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TimePickerTo.Location = new System.Drawing.Point(900, 209);
             this.TimePickerTo.Name = "TimePickerTo";
             this.TimePickerTo.ShowUpDown = true;
-            this.TimePickerTo.Size = new System.Drawing.Size(94, 26);
+            this.TimePickerTo.Size = new System.Drawing.Size(64, 26);
             this.TimePickerTo.TabIndex = 40;
+            this.TimePickerTo.Value = new System.DateTime(2019, 4, 1, 14, 0, 0, 0);
             this.TimePickerTo.Visible = false;
             // 
             // TimePickerFrom
             // 
-            this.TimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.TimePickerFrom.Location = new System.Drawing.Point(654, 219);
+            this.TimePickerFrom.CustomFormat = "HH:mm";
+            this.TimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TimePickerFrom.Location = new System.Drawing.Point(792, 209);
             this.TimePickerFrom.Name = "TimePickerFrom";
             this.TimePickerFrom.ShowUpDown = true;
-            this.TimePickerFrom.Size = new System.Drawing.Size(94, 26);
+            this.TimePickerFrom.Size = new System.Drawing.Size(66, 26);
             this.TimePickerFrom.TabIndex = 39;
+            this.TimePickerFrom.Value = new System.DateTime(2019, 4, 1, 13, 0, 0, 0);
             this.TimePickerFrom.Visible = false;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(367, 7);
+            this.label13.Location = new System.Drawing.Point(375, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(19, 520);
             this.label13.TabIndex = 36;
@@ -561,7 +571,7 @@ namespace Patientenverwaltung_v3._0
             // textBoxBefund
             // 
             this.textBoxBefund.Enabled = false;
-            this.textBoxBefund.Location = new System.Drawing.Point(465, 382);
+            this.textBoxBefund.Location = new System.Drawing.Point(466, 361);
             this.textBoxBefund.Multiline = true;
             this.textBoxBefund.Name = "textBoxBefund";
             this.textBoxBefund.Size = new System.Drawing.Size(499, 125);
@@ -570,7 +580,7 @@ namespace Patientenverwaltung_v3._0
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(391, 385);
+            this.label7.Location = new System.Drawing.Point(392, 364);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 20);
             this.label7.TabIndex = 23;
@@ -579,7 +589,7 @@ namespace Patientenverwaltung_v3._0
             // textBoxBetreff
             // 
             this.textBoxBetreff.Enabled = false;
-            this.textBoxBetreff.Location = new System.Drawing.Point(465, 262);
+            this.textBoxBetreff.Location = new System.Drawing.Point(466, 241);
             this.textBoxBetreff.Multiline = true;
             this.textBoxBetreff.Name = "textBoxBetreff";
             this.textBoxBetreff.Size = new System.Drawing.Size(499, 114);
@@ -588,26 +598,25 @@ namespace Patientenverwaltung_v3._0
             // 
             // dateTimePickerAppointment
             // 
-            this.dateTimePickerAppointment.Location = new System.Drawing.Point(465, 219);
+            this.dateTimePickerAppointment.Location = new System.Drawing.Point(466, 209);
             this.dateTimePickerAppointment.Name = "dateTimePickerAppointment";
-            this.dateTimePickerAppointment.Size = new System.Drawing.Size(183, 26);
+            this.dateTimePickerAppointment.Size = new System.Drawing.Size(272, 26);
             this.dateTimePickerAppointment.TabIndex = 21;
             this.dateTimePickerAppointment.Visible = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(751, 222);
+            this.label6.Location = new System.Drawing.Point(864, 212);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 20);
+            this.label6.Size = new System.Drawing.Size(32, 20);
             this.label6.TabIndex = 20;
-            this.label6.Text = "-";
-            this.label6.Visible = false;
+            this.label6.Text = "bis:";
             // 
             // btnDeleteDate
             // 
             this.btnDeleteDate.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteDate.Image")));
-            this.btnDeleteDate.Location = new System.Drawing.Point(411, 154);
+            this.btnDeleteDate.Location = new System.Drawing.Point(412, 154);
             this.btnDeleteDate.Name = "btnDeleteDate";
             this.btnDeleteDate.Size = new System.Drawing.Size(49, 49);
             this.btnDeleteDate.TabIndex = 16;
@@ -617,10 +626,12 @@ namespace Patientenverwaltung_v3._0
             // btnAddDate
             // 
             this.btnAddDate.Image = ((System.Drawing.Image)(resources.GetObject("btnAddDate.Image")));
-            this.btnAddDate.Location = new System.Drawing.Point(868, 210);
+            this.btnAddDate.Location = new System.Drawing.Point(466, 490);
             this.btnAddDate.Name = "btnAddDate";
-            this.btnAddDate.Size = new System.Drawing.Size(45, 45);
+            this.btnAddDate.Size = new System.Drawing.Size(245, 45);
             this.btnAddDate.TabIndex = 15;
+            this.btnAddDate.Text = "Bestätigen";
+            this.btnAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddDate.UseVisualStyleBackColor = true;
             this.btnAddDate.Visible = false;
             this.btnAddDate.Click += new System.EventHandler(this.btnAddDate_Click);
@@ -628,7 +639,7 @@ namespace Patientenverwaltung_v3._0
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(387, 6);
+            this.label5.Location = new System.Drawing.Point(394, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 20);
             this.label5.TabIndex = 12;
@@ -661,11 +672,29 @@ namespace Patientenverwaltung_v3._0
             this.labelStatus.Size = new System.Drawing.Size(0, 18);
             this.labelStatus.TabIndex = 5;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(420, 212);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 20);
+            this.label14.TabIndex = 46;
+            this.label14.Text = "Am:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(744, 212);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(42, 20);
+            this.label15.TabIndex = 47;
+            this.label15.Text = "von:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 611);
+            this.ClientSize = new System.Drawing.Size(1005, 598);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "Patientenverwaltung";
@@ -743,6 +772,8 @@ namespace Patientenverwaltung_v3._0
         private Button buttonNeuTermin;
         private Button buttonCloseDate;
         private Panel panelLinks;
+        private Label label15;
+        private Label label14;
     }
 }
 
